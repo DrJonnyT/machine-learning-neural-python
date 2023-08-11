@@ -30,11 +30,9 @@ from sklearn.model_selection import train_test_split
 dataset = dataset[..., np.newaxis]
 labels = labels[..., np.newaxis]
 
-# Create training and test sets
-dataset_train, dataset_test, labels_train, labels_test = train_test_split(dataset, labels, test_size=0.15, random_state=42)
-
-# Create a validation set
-dataset_train, dataset_val, labels_train, labels_val = train_test_split(dataset_train, labels_train, test_size=0.15, random_state=42)
+# Create training and validation datasets in a 70:15:15 split
+dataset_train, dataset_temp, labels_train, labels_temp = train_test_split(dataset, labels, test_size=0.3, stratify=labels, random_state=42)
+dataset_val, dataset_test, labels_val, labels_test = train_test_split(dataset_temp, labels_temp, test_size=0.5, stratify=labels_temp, random_state=42)
 
 print("No. images, x_dim, y_dim, colors) (No. labels, 1)\n")
 print(f"Train: {dataset_train.shape}, {labels_train.shape}")
