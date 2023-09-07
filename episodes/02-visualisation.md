@@ -1,29 +1,95 @@
 ---
-title: Arrays
-teaching: 25
+title: Visualisation
+teaching: 20
 exercises: 10
 ---
 
 ::::::::::::::::::::::::::::::::::::::: objectives
 
-- "Learn how to create multidimensional arrays"
-- "Select individual values and subsections of an array."
+- "Visually compare normal X-rays with those labelled with pleural effusion."
+- "Understand how to use NumPy to store and manipulate image data."
+- "Compare a slice of numerical data to its corresponding image."
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::::: questions
 
-- "How can I access the information in an array?"
+- "How does an image with pleural effusion differ from one without?"
+- "How is image data represented in a NumPy array?"
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
+:::::::::::::::::::::::::::::::::::::::: keypoints
+
+- "In NumPy, RGB images are usually stored as 3-dimensional arrays."
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+## Visualising the X-rays
+
+In the previous section, we set up a dataset comprising 700 chest X-rays. Half of the X-rays are labelled "normal" and half are labelled as "pleural effusion". Let's take a look at some of the images.
+
+```python {: .language-python}
+# cv2 is openCV, a popular computer vision library
+import cv2
+from matplotlib import pyplot as plt 
+import random
+
+def plot_example(example, label, loc):
+    image = cv2.imread(example)
+    im = ax[loc].imshow(image)
+    title = f"Class: {label}\n{example}"
+    ax[loc].set_title(title)
+
+fig, ax = plt.subplots(1, 2)
+fig.set_size_inches(10, 10)
+
+# Plot a "normal" record
+plot_example(random.choice(normal_list), "Normal", 0)
+
+# Plot a record labelled with effusion
+plot_example(random.choice(effusion_list), "Effusion", 1)
+```
+
+![Example X-rays](/fig/example_records.png){: width="700px"}
 
 
+## Can we detect effusion?
 
+Run the following code to flip a coin to select an x-ray from our collection.
 
+```python
+print("Effusion or not?")
 
+# flip a coin
+coin_flip = random.choice(["Effusion", "Normal"])
+if coin_flip == "Normal":
+    fn = random.choice(normal_list)
+else:
+    fn = random.choice(effusion_list)
 
+# plot the image
+image = cv2.imread(fn)
+plt.imshow(image)
+```
 
+Show the answer:
+
+```python
+# Jupyter doesn't allow us to print the image until the cell has run,
+# so we'll print in a new cell.
+print(f"The answer is: {coin_flip}!")
+```
+
+> ## Exercise
+> A) Manually classify 10 X-rays using the coin flip code. Make a note of your predictive accuracy (hint: for a 
+> reminder of the formula for accuracy, check the solution below).
+> 
+> > ## Solution
+> > A) Accuracy is the fraction of predictions that were correct (correct predictions / total predictions). 
+> > If you made 10 predictions and 5 were correct, your accuracy is 50%.  
+> {: .solution}
+{: .challenge}
 
 
 
