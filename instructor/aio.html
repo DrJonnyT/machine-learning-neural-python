@@ -449,12 +449,15 @@ Common Thorax Diseases, IEEE CVPR, pp. 3462-3471, 2017</p>
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Number of cases with pleural effusion: '</span>, <span class="bu">len</span>(effusion_list)) </span>
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Number of normal cases: '</span>, <span class="bu">len</span>(normal_list))</span></code></pre>
 </div>
-<p>{: .language-python}</p>
-<pre><code>Number of cases with pleural effusion:  350
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>Number of cases with pleural effusion:  350
 Number of normal cases:  350</code></pre>
-<p>{: .output}</p>
-<p>{% include links.md %}</p>
-</section><section id="introduction-to-the-matlab-gui"><h2 class="section-heading">Introduction to the MATLAB GUI<a class="anchor" aria-label="anchor" href="#introduction-to-the-matlab-gui"></a>
+</div>
+</section><section id="matlab"><h2 class="section-heading">MATLAB<a class="anchor" aria-label="anchor" href="#matlab"></a>
+</h2>
+<hr class="half-width"></section><section id="introduction-to-the-matlab-gui"><h2 class="section-heading">Introduction to the MATLAB GUI<a class="anchor" aria-label="anchor" href="#introduction-to-the-matlab-gui"></a>
 </h2>
 <hr class="half-width">
 <p>Before we can start programming, we need to know a little about the
@@ -646,7 +649,7 @@ we can save (unfold the info below if you want to know more).</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>We mentioned above that we can get other symbols in the workspace
 which relate to the types of information we can save.</p>
@@ -761,7 +764,7 @@ not smaller than 10? - Is 5 to the power of 3 different from 125? - Is x
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>We can ask the first two question in positive, encapsulate it in
 brackets, and then negate it: - <code>~(1 + 2 + 3 + 4 &lt; 10)</code> -
@@ -1323,7 +1326,7 @@ need the square brackets anymore. So the command above becomes:</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>We need to select every other element in both dimensions. To do that,
 we define the apropriate intervals with an increment of 2:</p>
@@ -1503,7 +1506,7 @@ numbers 5 or 8, and using <code>end</code> only once:</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>We need to tart with row <code>2</code>, and subsequently select
 every third row:</p>
@@ -1574,7 +1577,7 @@ the element variable? Compare the result from <code>element</code> and
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <ol style="list-style-type: decimal">
 <li>Exercises using slicing</li>
@@ -1878,7 +1881,7 @@ the <code>max</code>, <code>min</code> and <code>std</code>?</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>We already know that the colon operator as an index returns all the
 elements, so <code>patient_data(:)</code> will return a vector with all
@@ -2192,7 +2195,7 @@ that the commands become:</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>Using the power matlab has to compare arrays, we can check which
 patients have a <code>max</code> equal to the <code>global_max</code>.
