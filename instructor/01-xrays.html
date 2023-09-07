@@ -149,6 +149,8 @@
     <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
         <ul><li><a href="#chest-x-rays">Chest X-rays</a></li>
+<li><a href="#pleural-effusion">Pleural effusion</a></li>
+<li><a href="#loading-the-dataset">Loading the dataset</a></li>
 <li><a href="#introduction-to-the-matlab-gui">Introduction to the MATLAB GUI</a></li>
 <li><a href="#working-with-variables">Working with variables</a></li>
         </ul></div><!--/div.accordion-body-->
@@ -351,7 +353,62 @@ overlooked.</p>
 Wang et al</a>. It illustrates eight common diseases that the authors
 noted could be be detected and even spatially-located in front chest
 x-rays with the use of modern machine learning algorithms.</p>
-<p><img src="../fig/wang_et_al.png" width="600" alt="Chest X-ray diseases" class="figure"><img src="../fig/wang_et_al.png" width="200" alt="Chest X-ray diseases" class="figure"></p>
+<figure><img src="../fig/wang_et_al.png" width="700" alt="" class="figure mx-auto d-block"><figcaption>Chest X-ray diseases</figcaption></figure></section><section id="pleural-effusion"><h2 class="section-heading">Pleural effusion<a class="anchor" aria-label="anchor" href="#pleural-effusion"></a>
+</h2>
+<hr class="half-width"><p>Thin membranes called “pleura” line the lungs and facilitate
+breathing. Normally there is a small amount of fluid present in the
+pleura, but certain conditions can cause excess build-up of fluid. This
+build-up is known as pleural effusion, sometimes referred to as “water
+on the lungs”.</p>
+<p>Causes of pleural effusion vary widely, ranging from mild viral
+infections to serious conditions such as congestive heart failure and
+cancer. In an upright patient, fluid gathers in the lowest part of the
+chest, and this build up is visible to an expert.</p>
+<p>For the remainder of this lesson, we will develop an algorithm to
+detect pleural effusion in chest X-rays. Specifically, using a set of
+chest X-rays labelled as either “normal” or “pleural effusion”, we will
+train a neural network to classify unseen chest X-rays into one of these
+classes.</p>
+</section><section id="loading-the-dataset"><h2 class="section-heading">Loading the dataset<a class="anchor" aria-label="anchor" href="#loading-the-dataset"></a>
+</h2>
+<hr class="half-width"><p>The data that we are going to use for this project consists of 350
+“normal” chest X-rays and 350 X-rays that are labelled as showing
+evidence pleural effusion. These X-rays are a subset of the public NIH
+ChestX-ray dataset.</p>
+<blockquote>
+<p>Xiaosong Wang, Yifan Peng, Le Lu, Zhiyong Lu, Mohammadhadi Bagheri,
+Ronald Summers, ChestX-ray8: Hospital-scale Chest X-ray Database and
+Benchmarks on Weakly-Supervised Classification and Localization of
+Common Thorax Diseases, IEEE CVPR, pp. 3462-3471, 2017</p>
+</blockquote>
+<p>Let’s begin by loading the dataset.</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The glob module finds all the pathnames matching a specified pattern</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> glob <span class="im">import</span> glob</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># If your dataset is compressed, unzip with:</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># !unzip chest_xrays.zip</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Define folders containing images</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>data_path <span class="op">=</span> os.path.join(<span class="st">"chest_xrays"</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>effusion_path <span class="op">=</span> os.path.join(data_path, <span class="st">"effusion"</span>, <span class="st">"*.png"</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>normal_path <span class="op">=</span> os.path.join(data_path, <span class="st">"normal"</span>, <span class="st">"*.png"</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Create list of files</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>effusion_list <span class="op">=</span> glob(effusion_path)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>normal_list <span class="op">=</span> glob(normal_path)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Number of cases with pleural effusion: '</span>, <span class="bu">len</span>(effusion_list)) </span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Number of normal cases: '</span>, <span class="bu">len</span>(normal_list))</span></code></pre>
+</div>
+<p>{: .language-python}</p>
+<pre><code>Number of cases with pleural effusion:  350
+Number of normal cases:  350</code></pre>
+<p>{: .output}</p>
+<p>{% include links.md %}</p>
 </section><section id="introduction-to-the-matlab-gui"><h2 class="section-heading">Introduction to the MATLAB GUI<a class="anchor" aria-label="anchor" href="#introduction-to-the-matlab-gui"></a>
 </h2>
 <hr class="half-width"><p>Before we can start programming, we need to know a little about the
@@ -381,10 +438,10 @@ dataset with MATLAB. But before we discuss how to deal with many data
 points, we will show how to store a single value on the computer.</p>
 <p>We can create a new <a href="reference.html#variable">variable</a> by
 assigning a value to it using <code>=</code>:</p>
-<div class="codewrapper sourceCode" id="cb1">
+<div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">x</span> <span class="op">=</span> <span class="fl">55</span></span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">x</span> <span class="op">=</span> <span class="fl">55</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -403,11 +460,11 @@ names are <code>weight</code>, <code>size3</code>,
 <p>The reason we work with variables is so that we can reuse them, or
 save them for later use. We can do operations with these variables. For
 example, we can do a simple sum:</p>
-<div class="codewrapper sourceCode" id="cb3">
+<div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">y</span> <span class="op">=</span> <span class="fl">10</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">x</span> <span class="op">+</span> <span class="va">y</span></span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">y</span> <span class="op">=</span> <span class="fl">10</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">x</span> <span class="op">+</span> <span class="va">y</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -421,10 +478,10 @@ example, we can do a simple sum:</p>
 <code>ans</code>. This variable is temporary, and will be overwritten
 with any new operation we do. For example, if we now substract y from x
 we get:</p>
-<div class="codewrapper sourceCode" id="cb5">
+<div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">x</span> <span class="op">-</span> <span class="va">y</span></span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">x</span> <span class="op">-</span> <span class="va">y</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -434,10 +491,10 @@ we get:</p>
 </div>
 <p>The result of the sum is now gone forever. We can of course assign
 the result of an operation to a new variable, for example:</p>
-<div class="codewrapper sourceCode" id="cb7">
+<div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">z</span> <span class="op">=</span> <span class="va">x</span> <span class="op">*</span> <span class="va">y</span></span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">z</span> <span class="op">=</span> <span class="va">x</span> <span class="op">*</span> <span class="va">y</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -449,10 +506,10 @@ the result of an operation to a new variable, for example:</p>
 workspace, you can see that the value of z is 550.</p>
 <p>We can even use a variable in an operation, and save the value in the
 same variable. Fer example:</p>
-<div class="codewrapper sourceCode" id="cb9">
+<div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">y</span> <span class="op">=</span> <span class="va">y</span><span class="op">/</span><span class="fl">5</span></span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">y</span> <span class="op">=</span> <span class="va">y</span><span class="op">/</span><span class="fl">5</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -466,10 +523,10 @@ assigned to the variable specified to the left of the <code>=</code>
 sign.</p>
 <p>Of course, we can use multiple variables in a single operation, for
 example:</p>
-<div class="codewrapper sourceCode" id="cb11">
+<div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">z</span> <span class="op">=</span> <span class="va">z</span> <span class="op">-</span> <span class="va">y</span><span class="op">^</span><span class="fl">3</span> <span class="op">+</span> <span class="fl">5</span><span class="op">*</span><span class="va">x</span></span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">z</span> <span class="op">=</span> <span class="va">z</span> <span class="op">-</span> <span class="va">y</span><span class="op">^</span><span class="fl">3</span> <span class="op">+</span> <span class="fl">5</span><span class="op">*</span><span class="va">x</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -484,13 +541,13 @@ of y.</p>
 <p>In programming, there is another type of opperation that becomes very
 important: comparison. We can compare two numbers (or variables) to see
 which one is smaller, for example</p>
-<div class="codewrapper sourceCode" id="cb13">
+<div class="codewrapper sourceCode" id="cb15">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">mass</span> <span class="op">=</span> <span class="fl">20</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">age</span> <span class="op">=</span> <span class="fl">2.5</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">frac</span> <span class="op">=</span> <span class="va">mass</span><span class="op">/</span><span class="va">age</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">c1</span> <span class="op">=</span> <span class="va">frac</span> <span class="op">&lt;</span> <span class="fl">10</span></span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">mass</span> <span class="op">=</span> <span class="fl">20</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">age</span> <span class="op">=</span> <span class="fl">2.5</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">frac</span> <span class="op">=</span> <span class="va">mass</span><span class="op">/</span><span class="va">age</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">c1</span> <span class="op">=</span> <span class="va">frac</span> <span class="op">&lt;</span> <span class="fl">10</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -504,10 +561,10 @@ you wether frac (8) is smaller than 10, you would say “yes”. Matlab
 answered with a <code>logical 1</code>. If I ask you wether frac is
 greater than 10, you would say “no”. Matlab answers with a
 <code>logical 0</code>.</p>
-<div class="codewrapper sourceCode" id="cb15">
+<div class="codewrapper sourceCode" id="cb17">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">c2</span> <span class="op">=</span> <span class="va">frac</span> <span class="op">&gt;</span> <span class="fl">10</span></span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">c2</span> <span class="op">=</span> <span class="va">frac</span> <span class="op">&gt;</span> <span class="fl">10</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -540,7 +597,7 @@ we can save (unfold the info below if you want to know more).</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>We mentioned above that we can get other symbols in the workspace
 which relate to the types of information we can save.</p>
@@ -552,13 +609,13 @@ and words or sentences are <a href="https://uk.mathworks.com/help/matlab/ref/str
 Logical values (or booleans) are values that mean <a href="https://uk.mathworks.com/help/matlab/ref/true.html" class="external-link">true</a> or <a href="https://uk.mathworks.com/help/matlab/ref/false.html" class="external-link">false</a>,
 and are represented with zero or one. They are usually the result of
 comparing things.</p>
-<div class="codewrapper sourceCode" id="cb17">
+<div class="codewrapper sourceCode" id="cb19">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">weight</span> <span class="op">=</span> <span class="fl">64.5</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">size3</span> <span class="op">=</span> <span class="ss">'L'</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">patient_name</span> <span class="op">=</span> <span class="st">"Jane Doe"</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">alive_on_day_3</span> <span class="op">=</span> <span class="va">true</span></span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">weight</span> <span class="op">=</span> <span class="fl">64.5</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">size3</span> <span class="op">=</span> <span class="ss">'L'</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">patient_name</span> <span class="op">=</span> <span class="st">"Jane Doe"</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">alive_on_day_3</span> <span class="op">=</span> <span class="va">true</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -587,10 +644,10 @@ the type of variable it is.</p>
 </div>
 <p>We can also check if two variables (or even operations) are the
 same</p>
-<div class="codewrapper sourceCode" id="cb19">
+<div class="codewrapper sourceCode" id="cb21">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">c3</span> <span class="op">=</span> <span class="va">frac</span> <span class="op">==</span> <span class="va">mass</span><span class="op">/</span><span class="va">age</span></span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">c3</span> <span class="op">=</span> <span class="va">frac</span> <span class="op">==</span> <span class="va">mass</span><span class="op">/</span><span class="va">age</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -613,10 +670,10 @@ c4 =
 <p>If we want a “yes” as long as at least one of the conditions are met,
 we woudl ask if frac is smaller than 10 <strong><em>or</em></strong> the
 age is greater than 5</p>
-<div class="codewrapper sourceCode" id="cb22">
+<div class="codewrapper sourceCode" id="cb24">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">c5</span> <span class="op">=</span> <span class="va">frac</span> <span class="op">&lt;</span> <span class="fl">10</span> <span class="op">||</span> <span class="va">age</span> <span class="op">&gt;</span> <span class="fl">5</span></span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">c5</span> <span class="op">=</span> <span class="va">frac</span> <span class="op">&lt;</span> <span class="fl">10</span> <span class="op">||</span> <span class="va">age</span> <span class="op">&gt;</span> <span class="fl">5</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -655,7 +712,7 @@ not smaller than 10? - Is 5 to the power of 3 different from 125? - Is x
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>We can ask the first two question in positive, encapsulate it in
 brackets, and then negate it: - <code>~(1 + 2 + 3 + 4 &lt; 10)</code> -
@@ -688,10 +745,10 @@ something. There is actually a special symbol in matlab for that
 <em>groups</em> of variables called arrays, or matrices.</p>
 <p>We can create an array using square brackets and separating each
 value with a comma:</p>
-<div class="codewrapper sourceCode" id="cb24">
+<div class="codewrapper sourceCode" id="cb26">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">A</span> <span class="op">=</span> [<span class="fl">1</span><span class="op">,</span> <span class="fl">2</span><span class="op">,</span> <span class="fl">3</span>]</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">A</span> <span class="op">=</span> [<span class="fl">1</span><span class="op">,</span> <span class="fl">2</span><span class="op">,</span> <span class="fl">3</span>]</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -704,10 +761,10 @@ value with a comma:</p>
 <strong><em>row</em></strong> and 3
 <strong><em>columns</em></strong>.</p>
 <p>We can create matrices using semi-colons to separate rows:</p>
-<div class="codewrapper sourceCode" id="cb26">
+<div class="codewrapper sourceCode" id="cb28">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">B</span> <span class="op">=</span> [<span class="fl">1</span><span class="op">,</span> <span class="fl">2</span><span class="op">;</span> <span class="fl">3</span><span class="op">,</span> <span class="fl">4</span><span class="op">;</span> <span class="fl">5</span><span class="op">,</span> <span class="fl">6</span>]</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">B</span> <span class="op">=</span> [<span class="fl">1</span><span class="op">,</span> <span class="fl">2</span><span class="op">;</span> <span class="fl">3</span><span class="op">,</span> <span class="fl">4</span><span class="op">;</span> <span class="fl">5</span><span class="op">,</span> <span class="fl">6</span>]</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -721,10 +778,10 @@ value with a comma:</p>
 the <code>3x2</code> we get from the workspace.</p>
 <p>We can also create arrays of other types of data. For example, we
 could create an array of names:</p>
-<div class="codewrapper sourceCode" id="cb28">
+<div class="codewrapper sourceCode" id="cb30">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">Names</span> <span class="op">=</span> [<span class="st">"Jhon"</span><span class="op">,</span> <span class="st">"Abigail"</span><span class="op">,</span> <span class="st">"Bertrand"</span><span class="op">,</span> <span class="st">"Lucile"</span>]</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">Names</span> <span class="op">=</span> [<span class="st">"Jhon"</span><span class="op">,</span> <span class="st">"Abigail"</span><span class="op">,</span> <span class="st">"Bertrand"</span><span class="op">,</span> <span class="st">"Lucile"</span>]</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -734,10 +791,10 @@ could create an array of names:</p>
     "Jhon"    "Abigail"    "Bertrand"    "Lucile"</code></pre>
 </div>
 <p>Or we can use logical values too:</p>
-<div class="codewrapper sourceCode" id="cb30">
+<div class="codewrapper sourceCode" id="cb32">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">C</span> <span class="op">=</span> [<span class="va">true</span><span class="op">;</span> <span class="va">false</span><span class="op">;</span> <span class="va">false</span><span class="op">;</span> <span class="va">true</span>]</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">C</span> <span class="op">=</span> [<span class="va">true</span><span class="op">;</span> <span class="va">false</span><span class="op">;</span> <span class="va">false</span><span class="op">;</span> <span class="va">true</span>]</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -758,10 +815,10 @@ can we do operations with them?</p>
 particularly interesting programming language.</p>
 <p>We can, for example, check the whole matrix B and look for values
 greater than, say, 3.</p>
-<div class="codewrapper sourceCode" id="cb32">
+<div class="codewrapper sourceCode" id="cb34">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">B</span> <span class="op">&gt;</span> <span class="fl">3</span></span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">B</span> <span class="op">&gt;</span> <span class="fl">3</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -794,10 +851,10 @@ you are interested.</p>
 and it can make the code slower, so it is considered good form to always
 supress it. To supress it, we add a semi-colon at the end of the
 line:</p>
-<div class="codewrapper sourceCode" id="cb34">
+<div class="codewrapper sourceCode" id="cb36">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">x</span> <span class="op">=</span> <span class="fl">33</span><span class="op">;</span></span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">x</span> <span class="op">=</span> <span class="fl">33</span><span class="op">;</span></span></code></pre>
 </div>
 <p>At first glance nothing appears to have happened, but the workspace
 shows the new value was assigned.</p>
@@ -814,10 +871,10 @@ shows the new value was assigned.</p>
 <div class="callout-content">
 <p>If we really want to print the variable, then we can simply type its
 name and hit <kbd>Enter</kbd>,</p>
-<div class="codewrapper sourceCode" id="cb35">
+<div class="codewrapper sourceCode" id="cb37">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">patient_name</span></span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">patient_name</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -836,10 +893,10 @@ and either produce something or output something.</p>
 function, in particular, takes just one input – the variable that you
 want to print – and what it does is to print the variable in a nice way.
 For the variable patient_name, we would use it like this:</p>
-<div class="codewrapper sourceCode" id="cb37">
+<div class="codewrapper sourceCode" id="cb39">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">disp</span>(<span class="va">patient_name</span>)</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">disp</span>(<span class="va">patient_name</span>)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -863,10 +920,10 @@ lines.</p>
 <p>We have declared a few variables now, and we might not be using all
 of them. If we want to delete a variable we can do so by typing
 <code>clear</code> and the name of the variable, e.g.:</p>
-<div class="codewrapper sourceCode" id="cb39">
+<div class="codewrapper sourceCode" id="cb41">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">clear</span> <span class="va">alive_on_day_3</span></span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">clear</span> <span class="va">alive_on_day_3</span></span></code></pre>
 </div>
 <p>You might be able to see it disappear from the workspace. If you now
 try to use alive_on_day_3, matlab will error.</p>
@@ -875,10 +932,10 @@ command <code>clear</code>, without any variable names. Be careful
 though, there’s no way back!</p>
 <p>Another thing you might want to clear every once in a while is the
 output. To do that, we use the command <code>clc</code>.</p>
-<div class="codewrapper sourceCode" id="cb40">
+<div class="codewrapper sourceCode" id="cb42">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">clc</span></span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">clc</span></span></code></pre>
 </div>
 <p>Again, there is no way back!</p>
 </div>
