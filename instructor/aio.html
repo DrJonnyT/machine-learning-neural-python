@@ -36,7 +36,7 @@
         <img alt="Software Carpentry" src="../assets/images/software-logo.svg">
 </div>
     </div>
-    <div class="selector-container ">
+    <div class="selector-container">
       
       
       <div class="dropdown">
@@ -112,9 +112,11 @@
 </aside><div class="container">
       <div class="row">
         <!-- START: inst/pkgdown/templates/navbar.html -->
-  <div id="sidebar-col" class="col-lg-4">
-    <div id="sidebar" class="sidebar">
-      <nav aria-labelledby="flush-headingEleven"><button role="button" aria-label="close menu" alt="close menu" aria-expanded="true" aria-controls="sidebar" class="collapse-toggle"><i class="search-icon" data-feather="x" role="img"></i></button>
+<div id="sidebar-col" class="col-lg-4">
+  <div id="sidebar" class="sidebar">
+      <nav aria-labelledby="flush-headingEleven"><button role="button" aria-label="close menu" alt="close menu" aria-expanded="true" aria-controls="sidebar" class="collapse-toggle">
+          <i class="search-icon" data-feather="x" role="img"></i>
+        </button>
         <div class="sidebar-inner">
           <div class="row mobile-row">
             <div class="col">
@@ -170,7 +172,7 @@
 <div class="accordion accordion-flush" id="accordionFlush2">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading2">
-        <a href="01-intro.html">1. Working With Variables</a>
+        <a href="01-xrays.html">1. Introduction</a>
     </div>
 <!--/div.accordion-header-->
         
@@ -295,6 +297,7 @@
             </div>
             <hr class="half-width resources">
 <a href="../instructor/aio.html">See all in one page</a>
+            
 
             <hr class="d-none d-sm-block d-md-none">
 <div class="d-grid gap-1">
@@ -316,12 +319,12 @@
     <main id="main-content" class="main-content"><div class="container lesson-content">
         
         
-<section id="aio-01-intro"><p>Content from <a href="01-intro.html">Working With Variables</a></p>
+<section id="aio-01-xrays"><p>Content from <a href="01-xrays.html">Introduction</a></p>
 <hr>
-<p> Last updated on 2023-08-21 | 
+<p> Last updated on 2023-09-07 | 
         
-        <a href="https://github.com/UoMResearchIT/machine-learning-neural-python/edit/main/episodes/01-intro.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
-<p>Estimated time <i aria-hidden="true" data-feather="clock"></i> 35 minutes </p>
+        <a href="https://github.com/UoMResearchIT/machine-learning-neural-python/edit/main/episodes/01-xrays.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+<p>Estimated time <i aria-hidden="true" data-feather="clock"></i> 30 minutes </p>
 <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right"> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
         </div>
@@ -333,8 +336,8 @@
 <div class="inner">
 <h3 class="card-title">Questions</h3>
 <ul>
-<li>“How can I store values and do simple calculations with them?”</li>
-<li>“Which type of operations can I do?”</li>
+<li>“What kinds of diseases can be observed in chest X-rays?”</li>
+<li>“What is pleural effusion?”</li>
 </ul>
 </div>
 </div>
@@ -344,22 +347,60 @@
 <div class="inner bordered">
 <h3 class="card-title">Objectives</h3>
 <ul>
-<li>“Navigate among important sections of the MATLAB environment.”</li>
-<li>“Assign values to variables.”</li>
-<li>“Identify what type of data is stored in a variable.”</li>
-<li>“Creating simple arrays.”</li>
-<li>“Be able to explore the values of saved variables.”</li>
-<li>“Learn how to delete variables and keep things tidy.”</li>
+<li>“Gain awareness of the NIH ChestX-ray dataset.”</li>
+<li>“Load a subset of labelled chest X-rays.”</li>
 </ul>
 </div>
 </div>
 </div>
 </div>
 </div>
-<section id="introduction-to-the-matlab-gui"><h2 class="section-heading">Introduction to the MATLAB GUI<a class="anchor" aria-label="anchor" href="#introduction-to-the-matlab-gui"></a>
+<div id="keypoints1" class="callout keypoints">
+<div class="callout-square">
+<i class="callout-icon" data-feather="key"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Keypoints<a class="anchor" aria-label="anchor" href="#keypoints1"></a>
+</h3>
+<div class="callout-content">
+<ul>
+<li>“Algorithms can be used to detect disease in chest X-rays.”</li>
+</ul>
+</div>
+</div>
+</div>
+<section id="chest-x-rays"><h2 class="section-heading">Chest X-rays<a class="anchor" aria-label="anchor" href="#chest-x-rays"></a>
 </h2>
 <hr class="half-width">
-<p>ikpjosnfgsadeijbsadipbgsaipsaudiklofgsadbgipudsbgv</p>
+<p>Chest X-rays are frequently used in healthcare to view the heart,
+lungs, and bones of patients. On an X-ray, broadly speaking, bones
+appear white, soft tissue appears grey, and air appears black. The
+images can show details such as:</p>
+<ul>
+<li>Lung conditions, for example pneumonia, emphysema, or air in the
+space around the lung.</li>
+<li>Heart conditions, such as heart failure or heart valve
+problems.</li>
+<li>Bone conditions, such as rib or spine fractures</li>
+<li>Medical devices, such as pacemaker, defibrillators and catheters.
+X-rays are often taken to assess whether these devices are positioned
+correctly.</li>
+</ul>
+<p>In recent years, organisations like the <a href="https://www.nih.gov/news-events/news-releases/nih-clinical-center-provides-one-largest-publicly-available-chest-x-ray-datasets-scientific-community" class="external-link">National
+Institutes of Health</a> have released large collections of X-rays,
+labelled with common diseases. The goal is to stimulate the community to
+develop algorithms that might assist radiologists in making diagnoses,
+and to potentially discover other findings that may have been
+overlooked.</p>
+<p>The following figure is from a study by <a href="https://openaccess.thecvf.com/content_cvpr_2017/papers/Wang_ChestX-ray8_Hospital-Scale_Chest_CVPR_2017_paper.pdf" class="external-link">Xiaosong
+Wang et al</a>. It illustrates eight common diseases that the authors
+noted could be be detected and even spatially-located in front chest
+x-rays with the use of modern machine learning algorithms.</p>
+<p><img src="../fig/wang_et_al.png" alt="Chest X-ray diseases" class="figure">{:
+width=“600px”}</p>
+</section><section id="introduction-to-the-matlab-gui"><h2 class="section-heading">Introduction to the MATLAB GUI<a class="anchor" aria-label="anchor" href="#introduction-to-the-matlab-gui"></a>
+</h2>
+<hr class="half-width">
 <p>Before we can start programming, we need to know a little about the
 MATLAB interface. Using the default setup, the MATLAB desktop contains
 several important sections:</p>
@@ -549,7 +590,7 @@ we can save (unfold the info below if you want to know more).</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>We mentioned above that we can get other symbols in the workspace
 which relate to the types of information we can save.</p>
@@ -664,7 +705,7 @@ not smaller than 10? - Is 5 to the power of 3 different from 125? - Is x
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>We can ask the first two question in positive, encapsulate it in
 brackets, and then negate it: - <code>~(1 + 2 + 3 + 4 &lt; 10)</code> -
@@ -896,12 +937,12 @@ output. To do that, we use the command <code>clc</code>.</p>
 </div>
 </div>
 </div>
-<div id="keypoints1" class="callout keypoints">
+<div id="keypoints2" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
 </div>
 <div class="callout-inner">
-<h3 class="callout-title">Keypoints<a class="anchor" aria-label="anchor" href="#keypoints1"></a>
+<h3 class="callout-title">Keypoints<a class="anchor" aria-label="anchor" href="#keypoints2"></a>
 </h3>
 <div class="callout-content">
 <ul>
@@ -3120,7 +3161,7 @@ script.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3201,7 +3242,7 @@ add the extension <code>png</code> in your function).</p></li>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -4210,7 +4251,7 @@ possible pairs of numbers?</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -4318,7 +4359,7 @@ order of the loops, then rewrite the code to test your hypothesis.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb19">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -4460,9 +4501,9 @@ values in your program.”</li>
         <p>Materials licensed under <a href="../LICENSE.html">CC-BY 4.0</a> by the authors</p>
         
         <p><a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">Template licensed under CC-BY 4.0</a> by <a href="https://carpentries.org" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.12.4" class="external-link">sandpaper (0.12.4)</a>,
-        <a href="https://github.com/carpentries/pegboard/tree/0.6.0" class="external-link">pegboard (0.6.0)</a>,
-      and <a href="https://github.com/carpentries/varnish/tree/0.2.18" class="external-link">varnish (0.2.18)</a>.</p>
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.13.0" class="external-link">sandpaper (0.13.0)</a>,
+        <a href="https://github.com/carpentries/pegboard/tree/0.6.1" class="external-link">pegboard (0.6.1)</a>,
+      and <a href="https://github.com/carpentries/varnish/tree/0.3.0" class="external-link">varnish (0.3.0)</a>.</p>
 			</div>
 		</footer>
 </div> <!-- / div.container -->
@@ -4484,8 +4525,8 @@ values in your program.”</li>
   "url": "https://uomresearchit.github.io/machine-learning-neural-python/instructor/aio.html",
   "identifier": "https://uomresearchit.github.io/machine-learning-neural-python/instructor/aio.html",
   "dateCreated": "2014-12-12",
-  "dateModified": "2023-09-05",
-  "datePublished": "2023-09-05"
+  "dateModified": "2023-09-07",
+  "datePublished": "2023-09-07"
 }
 
   </script><script>
