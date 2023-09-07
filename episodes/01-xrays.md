@@ -76,16 +76,17 @@ normal_list = glob(normal_path)
 print('Number of cases with pleural effusion: ', len(effusion_list)) 
 print('Number of normal cases: ', len(normal_list))
 ```
-{: .language-python}
 
-```
+```output
 Number of cases with pleural effusion:  350
 Number of normal cases:  350
 ```
-{: .output}
 
 
-{% include links.md %}
+
+
+
+## MATLAB
 
 
 ## Introduction to the MATLAB GUI
