@@ -17,6 +17,21 @@ exercises: 10
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## MATLAB
 ## Initializing an Array
 
 We just talked about how matlab *thinks* in arrays, and declared some very simple arrays using square brackets.
