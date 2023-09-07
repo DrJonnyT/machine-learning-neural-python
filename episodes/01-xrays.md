@@ -38,7 +38,8 @@ In recent years, organisations like the [National Institutes of Health](https://
 
 The following figure is from a study by [Xiaosong Wang et al](https://openaccess.thecvf.com/content_cvpr_2017/papers/Wang_ChestX-ray8_Hospital-Scale_Chest_CVPR_2017_paper.pdf). It illustrates eight common diseases that the authors noted could be be detected and even spatially-located in front chest x-rays with the use of modern machine learning algorithms.
 
-![Chest X-ray diseases](/fignew/wang_et_al.png){width="600px",alt="alttest"}
+![Chest X-ray diseases](fignew/wang_et_al.png){width='600px',alt='alttest'}
+![](fig/matrix-single-element.svg){alt='Accessing a single value'}
 
 
 
