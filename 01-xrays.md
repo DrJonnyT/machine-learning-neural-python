@@ -1,30 +1,51 @@
 ---
-title: Working With Variables
-teaching: 30
-exercises: 5
+title: Introduction
+teaching: 20
+exercises: 10
 ---
 
 ::::::::::::::::::::::::::::::::::::::: objectives
 
-- "Navigate among important sections of the MATLAB environment."
-- "Assign values to variables."
-- "Identify what type of data is stored in a variable."
-- "Creating simple arrays."
-- "Be able to explore the values of saved variables."
-- "Learn how to delete variables and keep things tidy."
+- "Gain awareness of the NIH ChestX-ray dataset."
+- "Load a subset of labelled chest X-rays."
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::::: questions
 
-- "How can I store values and do simple calculations with them?"
-- "Which type of operations can I do?"
+- "What kinds of diseases can be observed in chest X-rays?"
+- "What is pleural effusion?"
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-## Introduction to the MATLAB GUI
+:::::::::::::::::::::::::::::::::::::::: keypoints
 
-ikpjosnfgsadeijbsadipbgsaipsaudiklofgsadbgipudsbgv
+- "Algorithms can be used to detect disease in chest X-rays."
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+
+## Chest X-rays
+
+Chest X-rays are frequently used in healthcare to view the heart, lungs, and bones of patients. On an X-ray, broadly speaking, bones appear white, soft tissue appears grey, and air appears black. The images can show details such as:
+
+- Lung conditions, for example pneumonia, emphysema, or air in the space around the lung.
+- Heart conditions, such as heart failure or heart valve problems.
+- Bone conditions, such as rib or spine fractures
+- Medical devices, such as pacemaker, defibrillators and catheters. X-rays are often taken to assess whether these devices are positioned correctly.
+
+In recent years, organisations like the [National Institutes of Health](https://www.nih.gov/news-events/news-releases/nih-clinical-center-provides-one-largest-publicly-available-chest-x-ray-datasets-scientific-community) have released large collections of X-rays, labelled with common diseases. The goal is to stimulate the community to develop algorithms that might assist radiologists in making diagnoses, and to potentially discover other findings that may have been overlooked.
+
+The following figure is from a study by [Xiaosong Wang et al](https://openaccess.thecvf.com/content_cvpr_2017/papers/Wang_ChestX-ray8_Hospital-Scale_Chest_CVPR_2017_paper.pdf). It illustrates eight common diseases that the authors noted could be be detected and even spatially-located in front chest x-rays with the use of modern machine learning algorithms.
+
+![Chest X-ray diseases](../fig/wang_et_al.png){: width="600px"}
+
+
+
+
+
+
+## Introduction to the MATLAB GUI
 
 Before we can start programming, we need to know a little about the MATLAB interface.
 Using the default setup, the MATLAB desktop contains several important sections:
