@@ -184,7 +184,7 @@
 <div class="accordion accordion-flush" id="accordionFlush3">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading3">
-        <a href="02-visualisation.html">2. Arrays</a>
+        <a href="02-visualisation.html">2. Visualisation</a>
     </div>
 <!--/div.accordion-header-->
         
@@ -649,7 +649,7 @@ we can save (unfold the info below if you want to know more).</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>We mentioned above that we can get other symbols in the workspace
 which relate to the types of information we can save.</p>
@@ -764,7 +764,7 @@ not smaller than 10? - Is 5 to the power of 3 different from 125? - Is x
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>We can ask the first two question in positive, encapsulate it in
 brackets, and then negate it: - <code>~(1 + 2 + 3 + 4 &lt; 10)</code> -
@@ -1024,12 +1024,12 @@ clear the console.”</li>
 </div>
 </div>
 </div>
-</section></section><section id="aio-02-visualisation"><p>Content from <a href="02-visualisation.html">Arrays</a></p>
+</section></section><section id="aio-02-visualisation"><p>Content from <a href="02-visualisation.html">Visualisation</a></p>
 <hr>
 <p> Last updated on 2023-09-07 | 
         
         <a href="https://github.com/UoMResearchIT/machine-learning-neural-python/edit/main/episodes/02-visualisation.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
-<p>Estimated time <i aria-hidden="true" data-feather="clock"></i> 35 minutes </p>
+<p>Estimated time <i aria-hidden="true" data-feather="clock"></i> 30 minutes </p>
 <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right"> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
         </div>
@@ -1041,7 +1041,9 @@ clear the console.”</li>
 <div class="inner">
 <h3 class="card-title">Questions</h3>
 <ul>
-<li>“How can I access the information in an array?”</li>
+<li>“How does an image with pleural effusion differ from one
+without?”</li>
+<li>“How is image data represented in a NumPy array?”</li>
 </ul>
 </div>
 </div>
@@ -1051,29 +1053,117 @@ clear the console.”</li>
 <div class="inner bordered">
 <h3 class="card-title">Objectives</h3>
 <ul>
-<li>“Learn how to create multidimensional arrays”</li>
-<li>“Select individual values and subsections of an array.”</li>
+<li>“Visually compare normal X-rays with those labelled with pleural
+effusion.”</li>
+<li>“Understand how to use NumPy to store and manipulate image
+data.”</li>
+<li>“Compare a slice of numerical data to its corresponding image.”</li>
 </ul>
 </div>
 </div>
 </div>
 </div>
 </div>
-<section id="matlab"><h2 class="section-heading">MATLAB<a class="anchor" aria-label="anchor" href="#matlab"></a>
-</h2>
-<hr class="half-width"></section><section id="initializing-an-array"><h2 class="section-heading">Initializing an Array<a class="anchor" aria-label="anchor" href="#initializing-an-array"></a>
+<div id="keypoints1" class="callout keypoints">
+<div class="callout-square">
+<i class="callout-icon" data-feather="key"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Keypoints<a class="anchor" aria-label="anchor" href="#keypoints1"></a>
+</h3>
+<div class="callout-content">
+<ul>
+<li>“In NumPy, RGB images are usually stored as 3-dimensional
+arrays.”</li>
+</ul>
+</div>
+</div>
+</div>
+<section id="visualising-the-x-rays"><h2 class="section-heading">Visualising the X-rays<a class="anchor" aria-label="anchor" href="#visualising-the-x-rays"></a>
 </h2>
 <hr class="half-width">
+<p>In the previous section, we set up a dataset comprising 700 chest
+X-rays. Half of the X-rays are labelled “normal” and half are labelled
+as “pleural effusion”. Let’s take a look at some of the images.</p>
+<p>```python {: .language-python} # cv2 is openCV, a popular computer
+vision library import cv2 from matplotlib import pyplot as plt import
+random</p>
+<p>def plot_example(example, label, loc): image = cv2.imread(example) im
+= ax[loc].imshow(image) title = f”Class: {label}”
+ax[loc].set_title(title)</p>
+<p>fig, ax = plt.subplots(1, 2) fig.set_size_inches(10, 10)</p>
+</section><div class="section level1">
+<h1 id="plot-a-normal-record">Plot a “normal” record<a class="anchor" aria-label="anchor" href="#plot-a-normal-record"></a>
+</h1>
+<p>plot_example(random.choice(normal_list), “Normal”, 0)</p>
+</div>
+<div class="section level1">
+<h1 id="plot-a-record-labelled-with-effusion">Plot a record labelled with effusion<a class="anchor" aria-label="anchor" href="#plot-a-record-labelled-with-effusion"></a>
+</h1>
+<p>plot_example(random.choice(effusion_list), “Effusion”, 1)</p>
+<pre><code>
+![Example X-rays](/fig/example_records.png){: width="700px"}
+
+
+## Can we detect effusion?
+
+Run the following code to flip a coin to select an x-ray from our collection.
+
+```python
+print("Effusion or not?")
+
+# flip a coin
+coin_flip = random.choice(["Effusion", "Normal"])
+if coin_flip == "Normal":
+    fn = random.choice(normal_list)
+else:
+    fn = random.choice(effusion_list)
+
+# plot the image
+image = cv2.imread(fn)
+plt.imshow(image)</code></pre>
+<p>Show the answer:</p>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Jupyter doesn't allow us to print the image until the cell has run,</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># so we'll print in a new cell.</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"The answer is: </span><span class="sc">{</span>coin_flip<span class="sc">}</span><span class="ss">!"</span>)</span></code></pre>
+</div>
+<blockquote>
+<h2 id="exercise">Exercise</h2>
+<ol style="list-style-type: upper-alpha">
+<li>Manually classify 10 X-rays using the coin flip code. Make a note of
+your predictive accuracy (hint: for a reminder of the formula for
+accuracy, check the solution below).</li>
+</ol>
+<blockquote>
+<h2 id="solution">Solution</h2>
+<ol style="list-style-type: upper-alpha">
+<li>Accuracy is the fraction of predictions that were correct (correct
+predictions / total predictions). If you made 10 predictions and 5 were
+correct, your accuracy is 50%.<br>
+{: .solution} {: .challenge}</li>
+</ol>
+</blockquote>
+</blockquote>
+<div class="section level2">
+<h2 id="matlab">MATLAB<a class="anchor" aria-label="anchor" href="#matlab"></a>
+</h2>
+</div>
+<div class="section level2">
+<h2 id="initializing-an-array">Initializing an Array<a class="anchor" aria-label="anchor" href="#initializing-an-array"></a>
+</h2>
 <p>We just talked about how matlab <em>thinks</em> in arrays, and
 declared some very simple arrays using square brackets. In some cases,
 we will want to create space to save data, but not save anything just
 yet. One way of doing so is with <code>zeros</code>. The function <a href="https://uk.mathworks.com/help/matlab/ref/zeros.html" class="external-link">zeros</a>
 takes the dimensions of our array as arguments, and populates it with
 zeros. For example,</p>
-<div class="codewrapper sourceCode" id="cb1">
+<div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">Z</span> <span class="op">=</span> <span class="va">zeros</span>(<span class="fl">3</span><span class="op">,</span><span class="fl">5</span>)</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">Z</span> <span class="op">=</span> <span class="va">zeros</span>(<span class="fl">3</span><span class="op">,</span><span class="fl">5</span>)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1086,10 +1176,10 @@ zeros. For example,</p>
 <p>creates a matrix of 3 rows and 5 columns, all with zeros. If we had
 only passed one dimension, matlab assumes you want a square matrix,
 so</p>
-<div class="codewrapper sourceCode" id="cb3">
+<div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">Z</span> <span class="op">=</span> <span class="va">zeros</span>(<span class="fl">3</span>)</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">Z</span> <span class="op">=</span> <span class="va">zeros</span>(<span class="fl">3</span>)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1102,10 +1192,10 @@ so</p>
 <p>yields a 3x3 array. If we want a single row and 5 columns, we need to
 remember that matlab reads <code>rows</code>x<code>columns</code>,
 so</p>
-<div class="codewrapper sourceCode" id="cb5">
+<div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">Z</span> <span class="op">=</span> <span class="va">zeros</span>(<span class="fl">1</span><span class="va">x5</span>)</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">Z</span> <span class="op">=</span> <span class="va">zeros</span>(<span class="fl">1</span><span class="va">x5</span>)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1120,11 +1210,11 @@ function</a> is quite similar, but the arrays are filled with ones, and
 the <a href="https://uk.mathworks.com/help/matlab/ref/rand.html" class="external-link"><code>rand</code>
 function</a> assigns uniformly distributed random numbers between zero
 and 1.</p>
-<div class="codewrapper sourceCode" id="cb7">
+<div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">R</span> <span class="op">=</span> <span class="va">rand</span>(<span class="fl">8</span>)<span class="op">;</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">O</span> <span class="op">=</span> <span class="va">ones</span>(<span class="fl">10</span><span class="op">,</span><span class="fl">10</span>)<span class="op">;</span></span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">R</span> <span class="op">=</span> <span class="va">rand</span>(<span class="fl">8</span>)<span class="op">;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">O</span> <span class="op">=</span> <span class="va">ones</span>(<span class="fl">10</span><span class="op">,</span><span class="fl">10</span>)<span class="op">;</span></span></code></pre>
 </div>
 <div id="callout1" class="callout callout">
 <div class="callout-square">
@@ -1144,20 +1234,20 @@ workspace.</p>
 <p>By the way, the <code>ones</code> function can actually help us
 initialize a matrix to any value, because we can multiply a matrix by a
 constant and it will multiply each element. So for example,</p>
-<div class="codewrapper sourceCode" id="cb8">
+<div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">Fives</span> <span class="op">=</span> <span class="va">ones</span>(<span class="fl">3</span><span class="op">,</span><span class="fl">6</span>)<span class="op">*</span><span class="fl">5</span><span class="op">;</span></span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">Fives</span> <span class="op">=</span> <span class="va">ones</span>(<span class="fl">3</span><span class="op">,</span><span class="fl">6</span>)<span class="op">*</span><span class="fl">5</span><span class="op">;</span></span></code></pre>
 </div>
 <p>Produces a 3x6 matrix full of fives.</p>
 <p>The <a href="https://uk.mathworks.com/help/matlab/ref/magic.html" class="external-link"><code>magic</code>
 function</a> has a similar logic, but you can only declare square
 matrices with it. The magic thing about them is that the sum of the
 elements on each row or column add up to the same number.</p>
-<div class="codewrapper sourceCode" id="cb9">
+<div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">M</span> <span class="op">=</span> <span class="va">magic</span>(<span class="fl">4</span>)</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">M</span> <span class="op">=</span> <span class="va">magic</span>(<span class="fl">4</span>)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1171,18 +1261,19 @@ elements on each row or column add up to the same number.</p>
 <p>In this case, each row or column add up to 34. But how could I tell
 in a bigger matrix? How can I select some of the elements of the array
 and sum them, for example?</p>
-</section><section id="array-indexing"><h2 class="section-heading">Array indexing<a class="anchor" aria-label="anchor" href="#array-indexing"></a>
+</div>
+<div class="section level2">
+<h2 id="array-indexing">Array indexing<a class="anchor" aria-label="anchor" href="#array-indexing"></a>
 </h2>
-<hr class="half-width">
 <p>Array <strong>indexing</strong>, is the method by which we can select
 one or more different elements of an array. A solid understanding of
 array indexing will be essential to work with arrays. Lets start with
 selecting one element.</p>
 <p>First, we will create an 8x8 “magic” matrix:</p>
-<div class="codewrapper sourceCode" id="cb11">
+<div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">M</span> <span class="op">=</span> <span class="va">magic</span>(<span class="fl">8</span>)</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">M</span> <span class="op">=</span> <span class="va">magic</span>(<span class="fl">8</span>)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1203,10 +1294,10 @@ selecting one element.</p>
 parentheses. In a 2D array, this means the row and column of the element
 separated by a comma, that is, as <code>(row, column)</code>. This index
 goes after the name of our array. In our case, this is:</p>
-<div class="codewrapper sourceCode" id="cb13">
+<div class="codewrapper sourceCode" id="cb15">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">M</span>(<span class="fl">5</span><span class="op">,</span> <span class="fl">6</span>)</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">M</span>(<span class="fl">5</span><span class="op">,</span> <span class="fl">6</span>)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1233,10 +1324,10 @@ but we can also select a group of them if instead of a number we give
 arrays as indices. For example, if we want to select this submatrix:</p>
 <figure><img src="../fig/matrix-submatrix.svg" alt="Accessing a submatrix" class="figure mx-auto d-block"></figure><p>we want rows 4, 5 and 6, and columns 5, 6 and 7, that is, the arrays
 <code>[4,5,6]</code> for rows, and <code>[5,6,7]</code> for columns:</p>
-<div class="codewrapper sourceCode" id="cb15">
+<div class="codewrapper sourceCode" id="cb17">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">M</span>([<span class="fl">4</span><span class="op">,</span><span class="fl">5</span><span class="op">,</span><span class="fl">6</span>]<span class="op">,</span>[<span class="fl">5</span><span class="op">,</span><span class="fl">6</span><span class="op">,</span><span class="fl">7</span>])</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">M</span>([<span class="fl">4</span><span class="op">,</span><span class="fl">5</span><span class="op">,</span><span class="fl">6</span>]<span class="op">,</span>[<span class="fl">5</span><span class="op">,</span><span class="fl">6</span><span class="op">,</span><span class="fl">7</span>])</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1258,10 +1349,10 @@ arrays as indices. For example, if we want to select this submatrix:</p>
 is used to specify a range. The range is specified as
 <code>start:end</code>. For example, if we type <code>1:6</code> it
 generates an array of consecutive numbers from 1 to 6:</p>
-<div class="codewrapper sourceCode" id="cb17">
+<div class="codewrapper sourceCode" id="cb19">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="fl">1</span><span class="op">:</span><span class="fl">6</span></span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="fl">1</span><span class="op">:</span><span class="fl">6</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1274,10 +1365,10 @@ the increment, we write the range as <code>start:increment:end</code>.
 For example, if we type <code>1:3:15</code> it generates an array
 starting with 1, then 1+3, then 1+2*3, and so on, until it reaches 15
 (or as close as it can get to 15 without going past it):</p>
-<div class="codewrapper sourceCode" id="cb19">
+<div class="codewrapper sourceCode" id="cb21">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">:</span><span class="fl">15</span></span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">:</span><span class="fl">15</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1295,10 +1386,10 @@ can specify the ranges as <code>4:6</code> and <code>5:7</code>. On top
 of being a much quicker and neater way to get the rows and columns,
 matlab knows that the range will produce an array, so we do not even
 need the square brackets anymore. So the command above becomes:</p>
-<div class="codewrapper sourceCode" id="cb21">
+<div class="codewrapper sourceCode" id="cb23">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">M</span>(<span class="fl">4</span><span class="op">:</span><span class="fl">6</span><span class="op">,</span> <span class="fl">5</span><span class="op">:</span><span class="fl">7</span>)</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">M</span>(<span class="fl">4</span><span class="op">:</span><span class="fl">6</span><span class="op">,</span> <span class="fl">5</span><span class="op">:</span><span class="fl">7</span>)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1328,14 +1419,14 @@ need the square brackets anymore. So the command above becomes:</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>We need to select every other element in both dimensions. To do that,
 we define the apropriate intervals with an increment of 2:</p>
-<div class="codewrapper sourceCode" id="cb23">
+<div class="codewrapper sourceCode" id="cb25">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">M</span>(<span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">:</span><span class="fl">8</span><span class="op">,</span> <span class="fl">2</span><span class="op">:</span><span class="fl">2</span><span class="op">:</span><span class="fl">8</span>)</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">M</span>(<span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">:</span><span class="fl">8</span><span class="op">,</span> <span class="fl">2</span><span class="op">:</span><span class="fl">2</span><span class="op">:</span><span class="fl">8</span>)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1355,10 +1446,10 @@ we define the apropriate intervals with an increment of 2:</p>
 <p>If we want a whole row, for example:</p>
 <figure><img src="../fig/matrix-row.svg" alt="Accessing a row" class="figure mx-auto d-block"></figure><p>we could in principle pick the 5th row and for the columns use the
 range <code>1:8</code>.</p>
-<div class="codewrapper sourceCode" id="cb25">
+<div class="codewrapper sourceCode" id="cb27">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">M</span>(<span class="fl">5</span><span class="op">,</span> <span class="fl">1</span><span class="op">:</span><span class="fl">8</span>)</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">M</span>(<span class="fl">5</span><span class="op">,</span> <span class="fl">1</span><span class="op">:</span><span class="fl">8</span>)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1380,10 +1471,10 @@ robust.</p>
 can be used to get the last index available.</p>
 <p>For example, <code>M(2,end)</code> returns the last element of the
 second row:</p>
-<div class="codewrapper sourceCode" id="cb27">
+<div class="codewrapper sourceCode" id="cb29">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">M</span>(<span class="fl">2</span><span class="op">,</span><span class="kw">end</span>)</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">M</span>(<span class="fl">2</span><span class="op">,</span><span class="kw">end</span>)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1394,10 +1485,10 @@ second row:</p>
 <p>We can also use it in combination with the <code>:</code> operator.
 For example, <code>M(5:end,3)</code> returns the elements of column 3
 from row 5 until the end:</p>
-<div class="codewrapper sourceCode" id="cb29">
+<div class="codewrapper sourceCode" id="cb31">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">M</span>(<span class="fl">5</span><span class="op">:</span><span class="kw">end</span><span class="op">,</span><span class="fl">3</span>)</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">M</span>(<span class="fl">5</span><span class="op">:</span><span class="kw">end</span><span class="op">,</span><span class="fl">3</span>)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1413,10 +1504,10 @@ from row 5 until the end:</p>
 </div>
 <p>We can then use the keyword <code>end</code> instead of the 8 to get
 the whole row with <code>1:end</code>.</p>
-<div class="codewrapper sourceCode" id="cb31">
+<div class="codewrapper sourceCode" id="cb33">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">M</span>(<span class="fl">5</span><span class="op">,</span> <span class="fl">1</span><span class="op">:</span><span class="kw">end</span>)</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">M</span>(<span class="fl">5</span><span class="op">,</span> <span class="fl">1</span><span class="op">:</span><span class="kw">end</span>)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1437,10 +1528,10 @@ don’t need to know the size.</p>
 <p>getting a whole row or column is such a common operation, that matlab
 has a shortcut: Using <code>:</code> alone is equivalent!</p>
 <p>For example, We can then get the whole fifth row with:</p>
-<div class="codewrapper sourceCode" id="cb33">
+<div class="codewrapper sourceCode" id="cb35">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">M</span>(<span class="fl">5</span><span class="op">,</span> <span class="op">:</span>)</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">M</span>(<span class="fl">5</span><span class="op">,</span> <span class="op">:</span>)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1454,10 +1545,10 @@ has a shortcut: Using <code>:</code> alone is equivalent!</p>
 <p>As you can see, the <code>:</code> operator is quite important when
 accessing arrays!</p>
 <p>We can use it to select multiple rows,</p>
-<figure><img src="../fig/matrix-multi-rows.svg" alt="Accessing multiple rows" class="figure mx-auto d-block"></figure><div class="codewrapper sourceCode" id="cb35">
+<figure><img src="../fig/matrix-multi-rows.svg" alt="Accessing multiple rows" class="figure mx-auto d-block"></figure><div class="codewrapper sourceCode" id="cb37">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">M</span>(<span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">,</span> <span class="op">:</span>)</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">M</span>(<span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">,</span> <span class="op">:</span>)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1469,10 +1560,10 @@ accessing arrays!</p>
    40   26   27   37   36   30   31   33</code></pre>
 </div>
 <p>or multiple columns:</p>
-<figure><img src="../fig/matrix-multi-cols.svg" alt="Accessing multiple columns" class="figure mx-auto d-block"></figure><div class="codewrapper sourceCode" id="cb37">
+<figure><img src="../fig/matrix-multi-cols.svg" alt="Accessing multiple columns" class="figure mx-auto d-block"></figure><div class="codewrapper sourceCode" id="cb39">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">M</span>(<span class="op">:,</span> <span class="fl">6</span><span class="op">:</span><span class="kw">end</span>)</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">M</span>(<span class="op">:,</span> <span class="fl">6</span><span class="op">:</span><span class="kw">end</span>)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1508,14 +1599,14 @@ numbers 5 or 8, and using <code>end</code> only once:</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>We need to tart with row <code>2</code>, and subsequently select
 every third row:</p>
-<div class="codewrapper sourceCode" id="cb39">
+<div class="codewrapper sourceCode" id="cb41">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">M</span>(<span class="fl">2</span><span class="op">:</span><span class="fl">3</span><span class="op">:</span><span class="kw">end</span><span class="op">,</span> <span class="op">:</span>)</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">M</span>(<span class="fl">2</span><span class="op">:</span><span class="fl">3</span><span class="op">:</span><span class="kw">end</span><span class="op">,</span> <span class="op">:</span>)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1539,12 +1630,12 @@ every third row:</p>
 <div class="callout-content">
 <p>A subsection of an array is called a <a href="../%7B%7B%20page.root%20%7D%7D/reference.html#slice">slice</a>. We
 can take slices of character arrays as well:</p>
-<div class="codewrapper sourceCode" id="cb41">
+<div class="codewrapper sourceCode" id="cb43">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">element</span> <span class="op">=</span> <span class="ss">'oxygen'</span><span class="op">;</span></span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">disp</span>([<span class="ss">'first three characters: '</span><span class="op">,</span> <span class="va">element</span>(<span class="fl">1</span><span class="op">:</span><span class="fl">3</span>)])</span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">disp</span>([<span class="ss">'last three characters: '</span><span class="op">,</span> <span class="va">element</span>(<span class="fl">4</span><span class="op">:</span><span class="fl">6</span>)])</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">element</span> <span class="op">=</span> <span class="ss">'oxygen'</span><span class="op">;</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">disp</span>([<span class="ss">'first three characters: '</span><span class="op">,</span> <span class="va">element</span>(<span class="fl">1</span><span class="op">:</span><span class="fl">3</span>)])</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">disp</span>([<span class="ss">'last three characters: '</span><span class="op">,</span> <span class="va">element</span>(<span class="fl">4</span><span class="op">:</span><span class="fl">6</span>)])</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1579,7 +1670,7 @@ the element variable? Compare the result from <code>element</code> and
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <ol style="list-style-type: decimal">
 <li>Exercises using slicing</li>
@@ -1606,10 +1697,10 @@ using it as <code>M(:)</code> returns all the elements of M. We can make
 sure that the result of <code>M(:)</code> has 8x8=64 elements by using
 the function <a href="https://uk.mathworks.com/help/matlab/ref/size.html" class="external-link">size</a>,
 which returns the dimensions of the array given as an input:</p>
-<div class="codewrapper sourceCode" id="cb43">
+<div class="codewrapper sourceCode" id="cb45">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">size</span>(<span class="va">M</span>(<span class="op">:</span>))</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">size</span>(<span class="va">M</span>(<span class="op">:</span>))</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1632,12 +1723,12 @@ latter a column vector.</p>
 </div>
 </div>
 </div>
-<div id="keypoints1" class="callout keypoints">
+<div id="keypoints2" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
 </div>
 <div class="callout-inner">
-<h3 class="callout-title">Keypoints<a class="anchor" aria-label="anchor" href="#keypoints1"></a>
+<h3 class="callout-title">Keypoints<a class="anchor" aria-label="anchor" href="#keypoints2"></a>
 </h3>
 <div class="callout-content">
 <ul>
@@ -1658,7 +1749,8 @@ elements.”</li>
 </div>
 </div>
 </div>
-</section></section><section id="aio-03-loading_data"><p>Content from <a href="03-loading_data.html">Loading data</a></p>
+</div>
+</div></section><section id="aio-03-loading_data"><p>Content from <a href="03-loading_data.html">Loading data</a></p>
 <hr>
 <p> Last updated on 2023-08-21 | 
         
@@ -1883,7 +1975,7 @@ the <code>max</code>, <code>min</code> and <code>std</code>?</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>We already know that the colon operator as an index returns all the
 elements, so <code>patient_data(:)</code> will return a vector with all
@@ -2197,7 +2289,7 @@ that the commands become:</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>Using the power matlab has to compare arrays, we can check which
 patients have a <code>max</code> equal to the <code>global_max</code>.
@@ -3649,7 +3741,7 @@ Check your result for <code>b = 4</code> and <code>x = 5</code>.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb17">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3701,7 +3793,7 @@ time:</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb19">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3772,7 +3864,7 @@ reverse order, one letter per line.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb25">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
