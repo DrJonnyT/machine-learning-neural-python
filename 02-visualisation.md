@@ -29,7 +29,7 @@ exercises: 10
 
 In the previous section, we set up a dataset comprising 700 chest X-rays. Half of the X-rays are labelled "normal" and half are labelled as "pleural effusion". Let's take a look at some of the images.
 
-```python {: .language-python}
+```python
 # cv2 is openCV, a popular computer vision library
 import cv2
 from matplotlib import pyplot as plt 
@@ -51,7 +51,7 @@ plot_example(random.choice(normal_list), "Normal", 0)
 plot_example(random.choice(effusion_list), "Effusion", 1)
 ```
 
-![Example X-rays](/fig/example_records.png){: width="700px"}
+![Example X-rays](/fig/example_records.png){alt='Example X-rays'}
 
 
 ## Can we detect effusion?
