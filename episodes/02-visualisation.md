@@ -51,7 +51,7 @@ plot_example(random.choice(normal_list), "Normal", 0)
 plot_example(random.choice(effusion_list), "Effusion", 1)
 ```
 
-![Example X-rays](/fig/example_records.png){alt='}
+![Example X-rays](/fig/example_records.png){alt='Example X-rays'}
 
 
 ## Can we detect effusion?
