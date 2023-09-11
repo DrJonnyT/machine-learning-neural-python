@@ -91,6 +91,20 @@ print(f"The answer is: {coin_flip}!")
 > {: .solution}
 {: .challenge}
 
+::::::::::::::::::::::::::::::::::::: challenge 
+
+## Exercise: Manual classification
+
+Q) Run the coin flip code 10 times and each time try to identify by eye whether the images are effusion or not. Make a note of your predictive accuracy
+>(hint: for a reminder of the formula for accuracy, check the solution below).
+
+:::::::::::::::::::::::: solution 
+
+A) Accuracy is the fraction of predictions that were correct (correct predictions / total predictions). 
+> If you made 10 predictions and 5 were correct, your accuracy is 50%.
+
+:::::::::::::::::::::::::::::::::
+
 ## How does a computer see an image?
 
 Consider an image as a matrix in which the value of each pixel corresponds to a number that determines a tone or color. Let's load one of our images:
