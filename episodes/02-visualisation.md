@@ -95,12 +95,12 @@ print(f"The answer is: {coin_flip}!")
 
 ## Exercise: Manual classification
 
-Q) Run the coin flip code 10 times and each time try to identify by eye whether the images are effusion or not. Make a note of your predictive accuracy
+Q: Run the coin flip code 10 times and each time try to identify by eye whether the images are effusion or not. Make a note of your predictive accuracy
 >(hint: for a reminder of the formula for accuracy, check the solution below).
 
 :::::::::::::::::::::::: solution 
 
-A) Accuracy is the fraction of predictions that were correct (correct predictions / total predictions). 
+A: Accuracy is the fraction of predictions that were correct (correct predictions / total predictions). 
 > If you made 10 predictions and 5 were correct, your accuracy is 50%.
 
 :::::::::::::::::::::::::::::::::
