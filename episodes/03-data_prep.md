@@ -110,8 +110,7 @@ Now we have some data to work with, let's start building our model.
 
 
 
-###MATLAB
-#MATLAB
+## MATLAB
 
 ## Loading data to an array
 
