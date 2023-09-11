@@ -61,7 +61,7 @@ contact: 'team@carpentries.org'
 episodes: 
 - 01-xrays.md
 - 02-visualisation.md
-- 03-loading_data.md
+- 03-data_prep.md
 - 04-plotting.md
 - 05-scripts.md
 - 06-func.md
