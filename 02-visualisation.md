@@ -81,15 +81,6 @@ Show the answer:
 print(f"The answer is: {coin_flip}!")
 ```
 
-> ## Exercise
-> A) Manually classify 10 X-rays using the coin flip code. Make a note of your predictive accuracy (hint: for a 
-> reminder of the formula for accuracy, check the solution below).
-> 
-> > ## Solution
-> > A) Accuracy is the fraction of predictions that were correct (correct predictions / total predictions). 
-> > If you made 10 predictions and 5 were correct, your accuracy is 50%.  
-> {: .solution}
-{: .challenge}
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 
@@ -119,12 +110,10 @@ image = cv2.imread(example)
 
 print(image.shape)
 ```
-{: .language-python}
 
-```
+```output
 (512, 512, 3)
 ```
-{: .output}
 
 Here we see that the image has 3 dimensions. The first dimension is height (512 pixels) and the second is width (also 512 pixels). 
 The presence of a third dimension indicates that we are looking at a color image ("RGB", or Red, Green, Blue).
@@ -139,12 +128,10 @@ For simplicity, we'll instead load the images in greyscale. A greyscale image ha
 image = cv2.imread(example, cv2.IMREAD_GRAYSCALE)
 print(image.shape)
 ```
-{: .language-python}
 
-```
+```output
 (512, 512)
 ```
-{: .output}
 
 Let's briefly display the matrix of values, and then see how these same values are rendered as an image.
 
@@ -152,7 +139,6 @@ Let's briefly display the matrix of values, and then see how these same values a
 # Print a 10 by 10 chunk of the matrix
 print(image[35:45, 30:40])
 ```
-{: .language-python}
 
 ![Example greyscale numpy array](fig/greyscale_example_numpy.png){alt='Example greyscale numpy array'}
 
@@ -161,7 +147,6 @@ print(image[35:45, 30:40])
 # Plot the same chunk as an image
 plt.imshow(image[35:45, 30:40], cmap='gray', vmin=0, vmax=255)
 ```
-{: .language-python}
 
 ![Example greyscale image](fig/greyscale_example.png){alt='Example greyscale image'}
 
@@ -182,7 +167,6 @@ label_normal = np.zeros(len(dataset_normal))
 dataset = dataset_effusion + dataset_normal
 labels = np.concatenate([label_effusion, label_normal])
 ```
-{: .language-python}
 
 Let's also downsample the images, reducing the size from (512, 512) to (256,256).
 
@@ -198,12 +182,10 @@ print(dataset[0].shape)
 for i in range(len(dataset)):
   dataset[i] = (dataset[i] - np.average(dataset[i], axis= (0, 1))) / np.std(dataset[i], axis= (0, 1)) 
 ```
-{: .language-python}
 
-```
+```output
 (256, 256)
 ```
-{: .output}
 
 Finally, we'll convert our dataset from a list to an array. We are expecting it to be (700, 256, 256). That is 700 images (350 effusion cases and 350 normal),  each with a dimension of 256 by 256.
 
@@ -212,10 +194,9 @@ dataset = np.asarray(dataset, dtype=np.float32)
 print(f"Matrix Dimensions: {dataset.shape}")
 ```
 
-```
+```output
 (700, 256, 256)
 ```
-{: .output}
 
 We could plot the images by indexing them on `dataset`, e.g., we can plot the first image in the dataset with:
 
@@ -224,7 +205,6 @@ idx = 0
 vals = dataset[idx].flatten()
 plt.imshow(dataset[idx], cmap='gray', vmin=min(vals), vmax=max(vals))
 ```
-{: .language-python}
 
 ![Final example image](fig/final_example_image.png){alt='Final example image'}
 
