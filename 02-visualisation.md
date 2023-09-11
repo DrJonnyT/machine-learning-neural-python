@@ -51,7 +51,7 @@ plot_example(random.choice(normal_list), "Normal", 0)
 plot_example(random.choice(effusion_list), "Effusion", 1)
 ```
 
-![Example X-rays](/fig/example_records.png){alt='Example X-rays'}
+![Example X-rays](fig/example_records.png){alt='Example X-rays'}
 
 
 ## Can we detect effusion?
@@ -91,8 +91,127 @@ print(f"The answer is: {coin_flip}!")
 > {: .solution}
 {: .challenge}
 
+## How does a computer see an image?
+
+Consider an image as a matrix in which the value of each pixel corresponds to a number that determines a tone or color. Let's load one of our images:
+
+```python
+import numpy as np 
+
+file_idx = 56
+example = normal_list[file_idx]
+image = cv2.imread(example)
+
+print(image.shape)
+```
+{: .language-python}
+
+```
+(512, 512, 3)
+```
+{: .output}
+
+Here we see that the image has 3 dimensions. The first dimension is height (512 pixels) and the second is width (also 512 pixels). 
+The presence of a third dimension indicates that we are looking at a color image ("RGB", or Red, Green, Blue).
+
+For more detail on image representation in Python, take a look at the [Data Carpentry course on Image Processing with Python](https://datacarpentry.org/image-processing/). The following image is reproduced from the [section on Image Representation](https://datacarpentry.org/image-processing/03-skimage-images/index.html).
+
+![RGB image](fig/chair-layers-rgb.png){alt='RGB image'}
+
+For simplicity, we'll instead load the images in greyscale. A greyscale image has two dimensions: height and width. Each value in the matrix represents a tone between black (0) and white (255).
+
+```python
+image = cv2.imread(example, cv2.IMREAD_GRAYSCALE)
+print(image.shape)
+```
+{: .language-python}
+
+```
+(512, 512)
+```
+{: .output}
+
+Let's briefly display the matrix of values, and then see how these same values are rendered as an image.
+
+```python
+# Print a 10 by 10 chunk of the matrix
+print(image[35:45, 30:40])
+```
+{: .language-python}
+
+![Example greyscale numpy array](fig/greyscale_example_numpy.png){alt='Example greyscale numpy array'}
 
 
+```python
+# Plot the same chunk as an image
+plt.imshow(image[35:45, 30:40], cmap='gray', vmin=0, vmax=255)
+```
+{: .language-python}
+
+![Example greyscale image](fig/greyscale_example.png){alt='Example greyscale image'}
+
+## Image pre-processing
+
+In the next episode, we'll be building and training a model. Let's prepare our data for the modelling phase. For convenience, we'll begin by loading all of the images and corresponding labels and assigning them to a list.
+
+```python
+# create a list of effusion images and labels
+dataset_effusion = [cv2.imread(fn, cv2.IMREAD_GRAYSCALE) for fn in effusion_list]
+label_effusion = np.ones(len(dataset_effusion))
+
+# create a list of normal images and labels
+dataset_normal = [cv2.imread(fn, cv2.IMREAD_GRAYSCALE) for fn in normal_list]
+label_normal = np.zeros(len(dataset_normal))
+
+# Combine the lists
+dataset = dataset_effusion + dataset_normal
+labels = np.concatenate([label_effusion, label_normal])
+```
+{: .language-python}
+
+Let's also downsample the images, reducing the size from (512, 512) to (256,256).
+
+```python
+# Downsample the images from (512,512) to (256,256)
+dataset = [cv2.resize(img, (256,256)) for img in dataset]
+
+# Check the size of the reshaped images
+print(dataset[0].shape)
+
+# Normalize the data
+# Subtract the mean, divide by the standard deviation.
+for i in range(len(dataset)):
+  dataset[i] = (dataset[i] - np.average(dataset[i], axis= (0, 1))) / np.std(dataset[i], axis= (0, 1)) 
+```
+{: .language-python}
+
+```
+(256, 256)
+```
+{: .output}
+
+Finally, we'll convert our dataset from a list to an array. We are expecting it to be (700, 256, 256). That is 700 images (350 effusion cases and 350 normal),  each with a dimension of 256 by 256.
+
+```python
+dataset = np.asarray(dataset, dtype=np.float32)
+print(f"Matrix Dimensions: {dataset.shape}")
+```
+
+```
+(700, 256, 256)
+```
+{: .output}
+
+We could plot the images by indexing them on `dataset`, e.g., we can plot the first image in the dataset with:
+
+```python
+idx = 0
+vals = dataset[idx].flatten()
+plt.imshow(dataset[idx], cmap='gray', vmin=min(vals), vmax=max(vals))
+```
+{: .language-python}
+
+![Final example image](fig/final_example_image.png){alt='Final example image'}
 
 
 
