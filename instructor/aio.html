@@ -649,7 +649,7 @@ we can save (unfold the info below if you want to know more).</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>We mentioned above that we can get other symbols in the workspace
 which relate to the types of information we can save.</p>
@@ -764,7 +764,7 @@ not smaller than 10? - Is 5 to the power of 3 different from 125? - Is x
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>We can ask the first two question in positive, encapsulate it in
 brackets, and then negate it: - <code>~(1 + 2 + 3 + 4 &lt; 10)</code> -
@@ -1137,23 +1137,6 @@ collection.</p>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># so we'll print in a new cell.</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"The answer is: </span><span class="sc">{</span>coin_flip<span class="sc">}</span><span class="ss">!"</span>)</span></code></pre>
 </div>
-<blockquote>
-<h2 id="exercise">Exercise</h2>
-<ol style="list-style-type: upper-alpha">
-<li>Manually classify 10 X-rays using the coin flip code. Make a note of
-your predictive accuracy (hint: for a reminder of the formula for
-accuracy, check the solution below).</li>
-</ol>
-<blockquote>
-<h2 id="solution">Solution</h2>
-<ol style="list-style-type: upper-alpha">
-<li>Accuracy is the fraction of predictions that were correct (correct
-predictions / total predictions). If you made 10 predictions and 5 were
-correct, your accuracy is 50%.<br>
-{: .solution} {: .challenge}</li>
-</ol>
-</blockquote>
-</blockquote>
 <div id="exercise-manual-classification" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -1178,7 +1161,7 @@ the solution below).</li>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <ol style="list-style-type: upper-alpha">
 <li>Accuracy is the fraction of predictions that were correct (correct
@@ -1206,9 +1189,11 @@ of our images:</p>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(image.shape)</span></code></pre>
 </div>
-<p>{: .language-python}</p>
-<pre><code>(512, 512, 3)</code></pre>
-<p>{: .output}</p>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>(512, 512, 3)</code></pre>
+</div>
 <p>Here we see that the image has 3 dimensions. The first dimension is
 height (512 pixels) and the second is width (also 512 pixels). The
 presence of a third dimension indicates that we are looking at a color
@@ -1227,9 +1212,11 @@ matrix represents a tone between black (0) and white (255).</p>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>image <span class="op">=</span> cv2.imread(example, cv2.IMREAD_GRAYSCALE)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(image.shape)</span></code></pre>
 </div>
-<p>{: .language-python}</p>
-<pre><code>(512, 512)</code></pre>
-<p>{: .output}</p>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>(512, 512)</code></pre>
+</div>
 <p>Let’s briefly display the matrix of values, and then see how these
 same values are rendered as an image.</p>
 <div class="codewrapper sourceCode" id="cb8">
@@ -1238,14 +1225,12 @@ same values are rendered as an image.</p>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print a 10 by 10 chunk of the matrix</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(image[<span class="dv">35</span>:<span class="dv">45</span>, <span class="dv">30</span>:<span class="dv">40</span>])</span></code></pre>
 </div>
-<p>{: .language-python}</p>
 <figure><img src="../fig/greyscale_example_numpy.png" alt="Example greyscale numpy array" class="figure mx-auto d-block"><figcaption>Example greyscale numpy array</figcaption></figure><div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the same chunk as an image</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>plt.imshow(image[<span class="dv">35</span>:<span class="dv">45</span>, <span class="dv">30</span>:<span class="dv">40</span>], cmap<span class="op">=</span><span class="st">'gray'</span>, vmin<span class="op">=</span><span class="dv">0</span>, vmax<span class="op">=</span><span class="dv">255</span>)</span></code></pre>
 </div>
-<p>{: .language-python}</p>
 <figure><img src="../fig/greyscale_example.png" alt="Example greyscale image" class="figure mx-auto d-block"><figcaption>Example greyscale image</figcaption></figure></section><section id="image-pre-processing"><h2 class="section-heading">Image pre-processing<a class="anchor" aria-label="anchor" href="#image-pre-processing"></a>
 </h2>
 <hr class="half-width">
@@ -1268,7 +1253,6 @@ to a list.</p>
 <span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>dataset <span class="op">=</span> dataset_effusion <span class="op">+</span> dataset_normal</span>
 <span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> np.concatenate([label_effusion, label_normal])</span></code></pre>
 </div>
-<p>{: .language-python}</p>
 <p>Let’s also downsample the images, reducing the size from (512, 512)
 to (256,256).</p>
 <div class="codewrapper sourceCode" id="cb11">
@@ -1285,9 +1269,11 @@ to (256,256).</p>
 <span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(dataset)):</span>
 <span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  dataset[i] <span class="op">=</span> (dataset[i] <span class="op">-</span> np.average(dataset[i], axis<span class="op">=</span> (<span class="dv">0</span>, <span class="dv">1</span>))) <span class="op">/</span> np.std(dataset[i], axis<span class="op">=</span> (<span class="dv">0</span>, <span class="dv">1</span>)) </span></code></pre>
 </div>
-<p>{: .language-python}</p>
-<pre><code>(256, 256)</code></pre>
-<p>{: .output}</p>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>(256, 256)</code></pre>
+</div>
 <p>Finally, we’ll convert our dataset from a list to an array. We are
 expecting it to be (700, 256, 256). That is 700 images (350 effusion
 cases and 350 normal), each with a dimension of 256 by 256.</p>
@@ -1297,8 +1283,11 @@ cases and 350 normal), each with a dimension of 256 by 256.</p>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>dataset <span class="op">=</span> np.asarray(dataset, dtype<span class="op">=</span>np.float32)</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Matrix Dimensions: </span><span class="sc">{</span>dataset<span class="sc">.</span>shape<span class="sc">}</span><span class="ss">"</span>)</span></code></pre>
 </div>
-<pre><code>(700, 256, 256)</code></pre>
-<p>{: .output}</p>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>(700, 256, 256)</code></pre>
+</div>
 <p>We could plot the images by indexing them on <code>dataset</code>,
 e.g., we can plot the first image in the dataset with:</p>
 <div class="codewrapper sourceCode" id="cb15">
@@ -1308,7 +1297,6 @@ e.g., we can plot the first image in the dataset with:</p>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>vals <span class="op">=</span> dataset[idx].flatten()</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>plt.imshow(dataset[idx], cmap<span class="op">=</span><span class="st">'gray'</span>, vmin<span class="op">=</span><span class="bu">min</span>(vals), vmax<span class="op">=</span><span class="bu">max</span>(vals))</span></code></pre>
 </div>
-<p>{: .language-python}</p>
 <figure><img src="../fig/final_example_image.png" alt="Final example image" class="figure mx-auto d-block"><figcaption>Final example image</figcaption></figure></section><section id="matlab"><h2 class="section-heading">MATLAB<a class="anchor" aria-label="anchor" href="#matlab"></a>
 </h2>
 <hr class="half-width"></section><section id="initializing-an-array"><h2 class="section-heading">Initializing an Array<a class="anchor" aria-label="anchor" href="#initializing-an-array"></a>
@@ -1578,7 +1566,7 @@ need the square brackets anymore. So the command above becomes:</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>We need to select every other element in both dimensions. To do that,
 we define the apropriate intervals with an increment of 2:</p>
@@ -1758,7 +1746,7 @@ numbers 5 or 8, and using <code>end</code> only once:</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <p>We need to tart with row <code>2</code>, and subsequently select
 every third row:</p>
@@ -1829,7 +1817,7 @@ the element variable? Compare the result from <code>element</code> and
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
 <ol style="list-style-type: decimal">
 <li>Exercises using slicing</li>
@@ -2133,7 +2121,7 @@ the <code>max</code>, <code>min</code> and <code>std</code>?</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>We already know that the colon operator as an index returns all the
 elements, so <code>patient_data(:)</code> will return a vector with all
@@ -2447,7 +2435,7 @@ that the commands become:</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>Using the power matlab has to compare arrays, we can check which
 patients have a <code>max</code> equal to the <code>global_max</code>.
@@ -3472,7 +3460,7 @@ script.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3553,7 +3541,7 @@ add the extension <code>png</code> in your function).</p></li>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3899,7 +3887,7 @@ Check your result for <code>b = 4</code> and <code>x = 5</code>.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb17">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3951,7 +3939,7 @@ time:</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb19">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -4022,7 +4010,7 @@ reverse order, one letter per line.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb25">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
