@@ -11,17 +11,17 @@
 carpentry: 'swc'
 
 # Overall title for pages.
-title: 'Programming with MATLAB'
+title: 'Introduction to artificial neural networks in Python'
 
 # Date the lesson was created (YYYY-MM-DD, this is empty by default)
-created: '2014-12-12'
+created: '2023-09-11'
 
 # Comma-separated list of keywords for the lesson
 keywords: 'software, data, lesson, The Carpentries'
 
 # Life cycle stage of the lesson
 # possible values: pre-alpha, alpha, beta, stable
-life_cycle: 'stable'
+life_cycle: 'pre-alpha'
 
 # License of the lesson materials (recommended CC-BY 4.0)
 license: 'CC-BY 4.0'
@@ -61,7 +61,7 @@ contact: 'team@carpentries.org'
 episodes: 
 - 01-xrays.md
 - 02-visualisation.md
-- 03-loading_data.md
+- 03-data_prep.md
 - 04-plotting.md
 - 05-scripts.md
 - 06-func.md
