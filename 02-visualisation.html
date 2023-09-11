@@ -404,6 +404,37 @@ correct, your accuracy is 50%.<br>
 {: .solution} {: .challenge}</li>
 </ol></blockquote>
 </blockquote>
+<div id="exercise-manual-classification" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="exercise-manual-classification" class="callout-inner">
+<h3 class="callout-title">Exercise: Manual classification<a class="anchor" aria-label="anchor" href="#exercise-manual-classification"></a>
+</h3>
+<div class="callout-content">
+<ol start="17" style="list-style-type: upper-alpha"><li>Run the coin flip code 10 times and each time try to identify by eye
+whether the images are effusion or not. Make a note of your predictive
+accuracy &gt;(hint: for a reminder of the formula for accuracy, check
+the solution below).</li>
+</ol></div>
+</div>
+</div>
+<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
+  <h4 class="accordion-header" id="headingSolution1">
+  Show me the solution
+  </h4>
+</button>
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div class="accordion-body">
+<ol style="list-style-type: upper-alpha"><li>Accuracy is the fraction of predictions that were correct (correct
+predictions / total predictions). &gt; If you made 10 predictions and 5
+were correct, your accuracy is 50%.</li>
+</ol></div>
+</div>
+</div>
+</div>
 </section><section id="how-does-a-computer-see-an-image"><h2 class="section-heading">How does a computer see an image?<a class="anchor" aria-label="anchor" href="#how-does-a-computer-see-an-image"></a>
 </h2>
 <hr class="half-width"><p>Consider an image as a matrix in which the value of each pixel
@@ -781,14 +812,14 @@ need the square brackets anymore. So the command above becomes:</p>
 <figure><img src="fig/matrix-strided-rowncols.svg" alt="Accessing strided rows and columns" class="figure mx-auto d-block"></figure></div>
 </div>
 </div>
-<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
-  <h4 class="accordion-header" id="headingSolution1">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
+  <h4 class="accordion-header" id="headingSolution2">
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>We need to select every other element in both dimensions. To do that,
 we define the apropriate intervals with an increment of 2:</p>
@@ -959,14 +990,14 @@ numbers 5 or 8, and using <code>end</code> only once:</p>
 <figure><img src="fig/matrix-strided-rows.svg" alt="Accessing strided columns" class="figure mx-auto d-block"></figure></div>
 </div>
 </div>
-<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution3" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
-  <h4 class="accordion-header" id="headingSolution2">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
+  <h4 class="accordion-header" id="headingSolution3">
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>We need to tart with row <code>2</code>, and subsequently select
 every third row:</p>
@@ -1024,14 +1055,14 @@ the element variable? Compare the result from <code>element</code> and
 </ol></div>
 </div>
 </div>
-<div id="accordionSolution3" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution4" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
-  <h4 class="accordion-header" id="headingSolution3">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
+  <h4 class="accordion-header" id="headingSolution4">
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <ol style="list-style-type: decimal"><li>Exercises using slicing</li>
 </ol><ul><li><p>To select all elements from 3rd to last we can use start our
