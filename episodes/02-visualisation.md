@@ -139,7 +139,7 @@ print(image[35:45, 30:40])
 ```
 {: .language-python}
 
-![Example greyscale numpy array](fig/greyscale_example_numpy.png){alt='Example greyscale numpy array}
+![Example greyscale numpy array](fig/greyscale_example_numpy.png){alt='Example greyscale numpy array'}
 
 
 ```python
