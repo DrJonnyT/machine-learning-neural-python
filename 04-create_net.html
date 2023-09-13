@@ -185,6 +185,9 @@
     <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
         <ul><li><a href="#what-is-a-neural-network">What is a neural network?</a></li>
+<li><a href="#activation-functions">Activation Functions</a></li>
+<li><a href="#convolutional-neural-networks">Convolutional neural networks</a></li>
+<li><a href="#creating-a-convolutional-neural-network">Creating a convolutional neural network</a></li>
 <li><a href="#matlab">MATLAB</a></li>
 <li><a href="#plotting">Plotting</a></li>
 <li><a href="#multiple-lines-in-a-plot">Multiple lines in a plot</a></li>
@@ -365,6 +368,189 @@ such as a prediction. The network has parameters that are systematically
 tweaked to allow pattern recognition.</p>
 <p><img src="fig/simple_neural_network.png" class="figure">{a;t=“A simple neural
 network with input, output, and 2 hidden layers”}</p>
+<p>The layers shown in the network above are “dense” or “fully
+connected”. Each neuron is connected to all neurons in the preceeding
+layer. Dense layers are a common building block in neural network
+architectures.</p>
+<p>“Deep learning” is an increasingly popular term used to describe
+certain types of neural network. When people talk about deep learning
+they are typically referring to more complex network designs, often with
+a large number of hidden layers.</p>
+</section><section id="activation-functions"><h2 class="section-heading">Activation Functions<a class="anchor" aria-label="anchor" href="#activation-functions"></a>
+</h2>
+<hr class="half-width"><p>Part of the concept of a neural network is that each neuron can
+either be ‘active’ or ‘inactive’. This notion of activity and inactivity
+is attempted to be replicated by so called activation functions. The
+original activation function was the sigmoid function (related to its
+use in logistic regression). This would make each neuron’s activation
+some number between 0 and 1, with the idea that 0 was ‘inactive’ and 1
+was ‘active’.</p>
+<p>As time went on, different activation functions were used. For
+example the tanh function (hyperbolic tangent function), where the idea
+is a neuron can be active in both a positive capacity (close to 1), a
+negative capacity (close to -1) or can be inactive (close to 0).</p>
+<p>The problem with both of these is that they suffered from a problem
+called <a href="http://vigir.missouri.edu/~gdesouza/Research/Conference_CDs/IEEE_SSCI_2015/data/7560b423.pdf" class="external-link">model
+saturation</a>. This is where very high or very low values are put into
+the activation function, where the gradient of the line is almost flat.
+This leads to very slow learning rates (it can take a long time to train
+models with these activation functions).</p>
+<p>Another very popular activation function that tries to tackle this is
+the rectified linear unit (ReLU) function. This has 0 if the input is
+negative (inactive) and just gives back the input if it is positive (a
+measure of how active it is - the metaphor gets rather stretched here).
+This is much faster at training and gives very good performance, but
+still suffers model saturation on the negative side. Researchers have
+tried to get round this with functions like ‘leaky’ ReLU, where instead
+of returning 0, negative inputs are multiplied by a very small
+number.</p>
+<figure><img src="fig/ActivationFunctions.png" alt="Plots of the Sigmoid, Tanh, ReLU, and Leaky ReLU activation functions" class="figure mx-auto d-block"></figure></section><section id="convolutional-neural-networks"><h2 class="section-heading">Convolutional neural networks<a class="anchor" aria-label="anchor" href="#convolutional-neural-networks"></a>
+</h2>
+<hr class="half-width"><p>Convolutional neural networks (CNNs) are a type of neural network
+that especially popular for vision tasks such as image recognition. CNNs
+are very similar to ordinary neural networks, but they have
+characteristics that make them well suited to image processing.</p>
+<p>Just like other neural networks, a CNN typically consists of an input
+layer, hidden layers and an output layer. The layers of “neurons” have
+learnable weights and biases, just like other networks.</p>
+<p>What makes CNNs special? The name stems from the fact that the
+architecture includes one or more convolutional layers. These layers
+apply a mathematical operation called a “convolution” to extract
+features from arrays such as images.</p>
+<p>In a convolutional layer, a matrix of values referred to as a
+“filter” or “kernel” slides across the input matrix (in our case, an
+image). As it slides, values are multiplied to generate a new set of
+values referred to as a “feature map” or “activation map”.</p>
+<figure><img src="fig/convolution_plotke.gif" alt="2D Convolution Animation by Michael Plotke" class="figure mx-auto d-block"></figure><p>Filters provide a mechanism for emphasising aspects of an input
+image. For example, a filter may emphasise object edges. See <a href="https://setosa.io/ev/image-kernels/" class="external-link">setosa.io</a> for a visual
+demonstration of the effect of different filters.</p>
+</section><section id="creating-a-convolutional-neural-network"><h2 class="section-heading">Creating a convolutional neural network<a class="anchor" aria-label="anchor" href="#creating-a-convolutional-neural-network"></a>
+</h2>
+<hr class="half-width"><p>Before training a convolutional neural network, we will first need to
+define the architecture. We can do this using the Keras and Tensorflow
+libraries.</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the architecture of our convolutional neural network, using</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># the tensorflow library</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow.random <span class="im">import</span> set_seed</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow.keras.layers <span class="im">import</span> Dense, Dropout, Conv2D, MaxPool2D, Input, GlobalAveragePooling2D</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow.keras.models <span class="im">import</span> Model</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># set random seed for reproducibility</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>set_seed(<span class="dv">42</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Our input layer should match the input shape of our images.</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># A CNN takes tensors of shape (image_height, image_width, color_channels)</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># We ignore the batch size when describing the input layer</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Our input images are 256 by 256, plus a single colour channel.</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>inputs <span class="op">=</span> Input(shape<span class="op">=</span>(<span class="dv">256</span>, <span class="dv">256</span>, <span class="dv">1</span>))</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Let's add the first convolutional layer</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> Conv2D(filters<span class="op">=</span><span class="dv">8</span>, kernel_size<span class="op">=</span><span class="dv">3</span>, padding<span class="op">=</span><span class="st">'same'</span>, activation<span class="op">=</span><span class="st">'relu'</span>)(inputs)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co"># MaxPool layers are similar to convolution layers. </span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co"># The pooling operation involves sliding a two-dimensional filter over each channel of feature map and selecting the max values.</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co"># We do this to reduce the dimensions of the feature maps, helping to limit the amount of computation done by the network.</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> MaxPool2D()(x)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co"># We will add more convolutional layers, followed by MaxPool</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> Conv2D(filters<span class="op">=</span><span class="dv">8</span>, kernel_size<span class="op">=</span><span class="dv">3</span>, padding<span class="op">=</span><span class="st">'same'</span>, activation<span class="op">=</span><span class="st">'relu'</span>)(x)</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> MaxPool2D()(x)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> Conv2D(filters<span class="op">=</span><span class="dv">12</span>, kernel_size<span class="op">=</span><span class="dv">3</span>, padding<span class="op">=</span><span class="st">'same'</span>, activation<span class="op">=</span><span class="st">'relu'</span>)(x)</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> MaxPool2D()(x)</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> Conv2D(filters<span class="op">=</span><span class="dv">12</span>, kernel_size<span class="op">=</span><span class="dv">3</span>, padding<span class="op">=</span><span class="st">'same'</span>, activation<span class="op">=</span><span class="st">'relu'</span>)(x)</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> MaxPool2D()(x)</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> Conv2D(filters<span class="op">=</span><span class="dv">20</span>, kernel_size<span class="op">=</span><span class="dv">5</span>, padding<span class="op">=</span><span class="st">'same'</span>, activation<span class="op">=</span><span class="st">'relu'</span>)(x)</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> MaxPool2D()(x)</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> Conv2D(filters<span class="op">=</span><span class="dv">20</span>, kernel_size<span class="op">=</span><span class="dv">5</span>, padding<span class="op">=</span><span class="st">'same'</span>, activation<span class="op">=</span><span class="st">'relu'</span>)(x)</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> MaxPool2D()(x)</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> Conv2D(filters<span class="op">=</span><span class="dv">50</span>, kernel_size<span class="op">=</span><span class="dv">5</span>, padding<span class="op">=</span><span class="st">'same'</span>, activation<span class="op">=</span><span class="st">'relu'</span>)(x)</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Global max pooling reduces dimensions back to the input size</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> GlobalAveragePooling2D()(x)</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Finally we will add two "dense" or "fully connected layers".</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Dense layers help with the classification task, after features are extracted.</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> Dense(<span class="dv">128</span>, activation<span class="op">=</span><span class="st">'relu'</span>)(x)</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="co"># Dropout is a technique to help prevent overfitting that involves deleting neurons.</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> Dropout(<span class="fl">0.6</span>)(x)</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> Dense(<span class="dv">32</span>, activation<span class="op">=</span><span class="st">'relu'</span>)(x)</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="co"># Our final dense layer has a single output to match the output classes.</span></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="co"># If we had multi-classes we would match this number to the number of classes.</span></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>outputs <span class="op">=</span> Dense(<span class="dv">1</span>, activation<span class="op">=</span><span class="st">'sigmoid'</span>)(x)</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="co"># Finally, we will define our network with the input and output of the network</span></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> Model(inputs<span class="op">=</span>inputs, outputs<span class="op">=</span>outputs)</span></code></pre>
+</div>
+<p>We can view the architecture of the model:</p>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>model.summary()</span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>Model: "model_39"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ input_9 (InputLayer)        [(None, 256, 256, 1)]     0         
+                                                                 
+ conv2d_59 (Conv2D)          (None, 256, 256, 8)       80        
+                                                                 
+ max_pooling2d_50 (MaxPoolin  (None, 128, 128, 8)      0         
+ g2D)                                                            
+                                                                 
+ conv2d_60 (Conv2D)          (None, 128, 128, 8)       584       
+                                                                 
+ max_pooling2d_51 (MaxPoolin  (None, 64, 64, 8)        0         
+ g2D)                                                            
+                                                                 
+ conv2d_61 (Conv2D)          (None, 64, 64, 12)        876       
+                                                                 
+ max_pooling2d_52 (MaxPoolin  (None, 32, 32, 12)       0         
+ g2D)                                                            
+                                                                 
+ conv2d_62 (Conv2D)          (None, 32, 32, 12)        1308      
+                                                                 
+ max_pooling2d_53 (MaxPoolin  (None, 16, 16, 12)       0         
+ g2D)                                                            
+                                                                 
+ conv2d_63 (Conv2D)          (None, 16, 16, 20)        6020      
+                                                                 
+ max_pooling2d_54 (MaxPoolin  (None, 8, 8, 20)         0         
+ g2D)                                                            
+                                                                 
+ conv2d_64 (Conv2D)          (None, 8, 8, 20)          10020     
+                                                                 
+ max_pooling2d_55 (MaxPoolin  (None, 4, 4, 20)         0         
+ g2D)                                                            
+                                                                 
+ conv2d_65 (Conv2D)          (None, 4, 4, 50)          25050     
+                                                                 
+ global_average_pooling2d_8   (None, 50)               0         
+ (GlobalAveragePooling2D)                                        
+                                                                 
+ dense_26 (Dense)            (None, 128)               6528      
+                                                                 
+ dropout_8 (Dropout)         (None, 128)               0         
+                                                                 
+ dense_27 (Dense)            (None, 32)                4128      
+                                                                 
+ dense_28 (Dense)            (None, 1)                 33        
+                                                                 
+=================================================================
+Total params: 54,627
+Trainable params: 54,627
+Non-trainable params: 0
+_________________________________________________________________</code></pre>
+</div>
 </section><section id="matlab"><h2 class="section-heading">MATLAB<a class="anchor" aria-label="anchor" href="#matlab"></a>
 </h2>
 <hr class="half-width"></section><section id="plotting"><h2 class="section-heading">Plotting<a class="anchor" aria-label="anchor" href="#plotting"></a>
@@ -381,10 +567,10 @@ over time. For the <code>Y</code> vector we can provide
 <code>per_day_mean</code>, and for the <code>X</code> vector we can
 simply use the day number, which we can generate as a range with
 <code>1:40</code>. Then our plot can be generated with:</p>
-<div class="codewrapper sourceCode" id="cb1">
+<div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">plot</span>(<span class="fl">1</span><span class="op">:</span><span class="fl">40</span><span class="op">,</span><span class="va">per_day_mean</span>)</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">plot</span>(<span class="fl">1</span><span class="op">:</span><span class="fl">40</span><span class="op">,</span><span class="va">per_day_mean</span>)</span></code></pre>
 </div>
 <div id="callout1" class="callout callout">
 <div class="callout-square">
@@ -421,33 +607,33 @@ as a variable. We would obtain the same plot with the command
 figure a <code>title</code> and label the axes using <code>xlabel</code>
 and <code>ylabel</code>, so that other people can understand what it
 shows (including us if we return to this plot 6 months from now).</p>
-<div class="codewrapper sourceCode" id="cb2">
+<div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">title</span>(<span class="ss">'Daily average inflammation'</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">xlabel</span>(<span class="ss">'Day of trial'</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">ylabel</span>(<span class="ss">'Inflammation'</span>)</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">title</span>(<span class="ss">'Daily average inflammation'</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">xlabel</span>(<span class="ss">'Day of trial'</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">ylabel</span>(<span class="ss">'Inflammation'</span>)</span></code></pre>
 </div>
 <figure><img src="fig/average-inflammation.png" alt="Average inflammation" class="figure mx-auto d-block"></figure><p>Much better, now the image actually communicates something.</p>
 <p>The result is roughly a linear rise and fall, which is suspicious:
 based on other studies, we expect a sharper rise and slower fall. Let’s
 have a look at two other statistics: the maximum and minimum
 inflammation per day across all patients.</p>
-<div class="codewrapper sourceCode" id="cb3">
+<div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">plot</span>(<span class="va">per_day_max</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">title</span>(<span class="ss">'Maximum inflammation per day'</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">ylabel</span>(<span class="ss">'Inflammation'</span>)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">xlabel</span>(<span class="ss">'Day of trial'</span>)</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">plot</span>(<span class="va">per_day_max</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">title</span>(<span class="ss">'Maximum inflammation per day'</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">ylabel</span>(<span class="ss">'Inflammation'</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">xlabel</span>(<span class="ss">'Day of trial'</span>)</span></code></pre>
 </div>
-<figure><img src="fig/max-inflammation.png" alt="Maximum inflammation" class="figure mx-auto d-block"></figure><div class="codewrapper sourceCode" id="cb4">
+<figure><img src="fig/max-inflammation.png" alt="Maximum inflammation" class="figure mx-auto d-block"></figure><div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">plot</span>(<span class="va">per_day_min</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">title</span>(<span class="ss">'Minimum inflammation per day'</span>)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">ylabel</span>(<span class="ss">'Inflammation'</span>)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">xlabel</span>(<span class="ss">'Day of trial'</span>)</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">plot</span>(<span class="va">per_day_min</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">title</span>(<span class="ss">'Minimum inflammation per day'</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">ylabel</span>(<span class="ss">'Inflammation'</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">xlabel</span>(<span class="ss">'Day of trial'</span>)</span></code></pre>
 </div>
 <figure><img src="fig/min-inflammation.png" alt="Minumum inflammation" class="figure mx-auto d-block"></figure><p>From the figures, we see that the maximum value rises and falls
 perfectly smoothly, while the minimum seems to be a step function.
@@ -463,23 +649,23 @@ line, it is important we add a legend. We can specify the legend names
 by adding <code>,'DisplayName',"legend name here"</code> inside the plot
 function. We then need to activate the legend by running
 <code>legend</code> So, to plot the mean values we first do:</p>
-<div class="codewrapper sourceCode" id="cb5">
+<div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">plot</span>(<span class="va">per_day_mean</span><span class="op">,</span><span class="ss">'DisplayName'</span><span class="op">,</span><span class="st">"Mean"</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">legend</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">title</span>(<span class="ss">'Daily average inflammation'</span>)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">xlabel</span>(<span class="ss">'Day of trial'</span>)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">ylabel</span>(<span class="ss">'Inflammation'</span>)</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">plot</span>(<span class="va">per_day_mean</span><span class="op">,</span><span class="ss">'DisplayName'</span><span class="op">,</span><span class="st">"Mean"</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">legend</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">title</span>(<span class="ss">'Daily average inflammation'</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">xlabel</span>(<span class="ss">'Day of trial'</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">ylabel</span>(<span class="ss">'Inflammation'</span>)</span></code></pre>
 </div>
 <figure><img src="fig/average_inflammation_with_legend.png" alt="Average inflamation with legend" class="figure mx-auto d-block"></figure><p>Then, we can use the instruction <code>hold on</code> to add a plot
 for patient_5.</p>
-<div class="codewrapper sourceCode" id="cb6">
+<div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">hold</span> <span class="va">on</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">plot</span>(<span class="va">patient_5</span><span class="op">,</span><span class="ss">'DisplayName'</span><span class="op">,</span><span class="st">"Patient 5"</span>)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">hold</span> <span class="va">off</span></span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">hold</span> <span class="va">on</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">plot</span>(<span class="va">patient_5</span><span class="op">,</span><span class="ss">'DisplayName'</span><span class="op">,</span><span class="st">"Patient 5"</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">hold</span> <span class="va">off</span></span></code></pre>
 </div>
 <figure><img src="fig/average_inflammation_and_patient_5_with_legend.png" alt="Average inflamation and Patient 5" class="figure mx-auto d-block"></figure><p>Remember to tell matlab you are done by adding <code>hold off</code>
 when you are done!</p>
@@ -492,18 +678,18 @@ columns, in which our plots will be placed. The third parameter
 indicates the position on the grid that we want to use for the “next”
 plot command. For example, we can show the average daily min and max
 plots together with:</p>
-<div class="codewrapper sourceCode" id="cb7">
+<div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">subplot</span>(<span class="fl">1</span><span class="op">,</span> <span class="fl">2</span><span class="op">,</span> <span class="fl">1</span>)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">plot</span>(<span class="va">per_day_max</span>)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">ylabel</span>(<span class="ss">'max'</span>)</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">xlabel</span>(<span class="ss">'day'</span>)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">subplot</span>(<span class="fl">1</span><span class="op">,</span> <span class="fl">2</span><span class="op">,</span> <span class="fl">2</span>)</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">plot</span>(<span class="va">per_day_min</span>)</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">ylabel</span>(<span class="ss">'min'</span>)</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">xlabel</span>(<span class="ss">'day'</span>)</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">subplot</span>(<span class="fl">1</span><span class="op">,</span> <span class="fl">2</span><span class="op">,</span> <span class="fl">1</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">plot</span>(<span class="va">per_day_max</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">ylabel</span>(<span class="ss">'max'</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">xlabel</span>(<span class="ss">'day'</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">subplot</span>(<span class="fl">1</span><span class="op">,</span> <span class="fl">2</span><span class="op">,</span> <span class="fl">2</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">plot</span>(<span class="va">per_day_min</span>)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">ylabel</span>(<span class="ss">'min'</span>)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">xlabel</span>(<span class="ss">'day'</span>)</span></code></pre>
 </div>
 <figure><img src="fig/max-min-subplot.png" alt="Max Min subplot" class="figure mx-auto d-block"></figure></section><section id="heatmaps"><h2 class="section-heading">Heatmaps<a class="anchor" aria-label="anchor" href="#heatmaps"></a>
 </h2>
@@ -513,26 +699,26 @@ the inflamation values. An option is to use a heatmap, that is, use the
 colour of each point to represent the inflamation values.</p>
 <p>In matlab, at least two methods can do this for us. The <a href="https://uk.mathworks.com/help/matlab/ref/heatmap.html" class="external-link"><code>heatmap</code>
 function</a> takes a table as input and produces a heatmap:</p>
-<div class="codewrapper sourceCode" id="cb8">
+<div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">heatmap</span>(<span class="va">patient_data</span>)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">title</span>(<span class="ss">'Inflammation'</span>)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">xlabel</span>(<span class="ss">'Day of trial'</span>)</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">ylabel</span>(<span class="ss">'Patient number'</span>)</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">heatmap</span>(<span class="va">patient_data</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">title</span>(<span class="ss">'Inflammation'</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">xlabel</span>(<span class="ss">'Day of trial'</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">ylabel</span>(<span class="ss">'Patient number'</span>)</span></code></pre>
 </div>
 <figure><img src="fig/heatmap.png" alt="Heat map" class="figure mx-auto d-block"></figure><p>We gain something by visualizing the whole dataset at once, but it is
 harder to distinwish the overly linear rises and fall over a 40 day
 period.</p>
 <p>Similarly, the <a href="https://uk.mathworks.com/help/matlab/ref/imagesc.html" class="external-link"><code>imagesc</code>
 function</a> represents the matrix as a color image.</p>
-<div class="codewrapper sourceCode" id="cb9">
+<div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">imagesc</span>(<span class="va">patient_data</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">title</span>(<span class="ss">'Inflammation'</span>)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">xlabel</span>(<span class="ss">'Day of trial'</span>)</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">ylabel</span>(<span class="ss">'Patient number'</span>)</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">imagesc</span>(<span class="va">patient_data</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">title</span>(<span class="ss">'Inflammation'</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">xlabel</span>(<span class="ss">'Day of trial'</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">ylabel</span>(<span class="ss">'Patient number'</span>)</span></code></pre>
 </div>
 <figure><img src="fig/inflammation-heatmap.png" alt="imagesc Heat map" class="figure mx-auto d-block"></figure><p>Every value in the matrix is <em>mapped</em> to a color. Blue regions
 in this heat map are low values, while yellow shows high values.</p>
