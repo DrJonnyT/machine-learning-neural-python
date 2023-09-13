@@ -62,7 +62,7 @@ episodes:
 - 01-xrays.md
 - 02-visualisation.md
 - 03-data_prep.md
-- 04-plotting.md
+- 04-create_net.md
 - 05-scripts.md
 - 06-func.md
 - 07-loops.md
