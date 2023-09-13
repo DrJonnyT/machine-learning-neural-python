@@ -1,22 +1,62 @@
 ---
-title: Plotting data
-teaching: 30
-exercises: 0
+title: Neural networks
+teaching: 20
+exercises: 10
 ---
 
 ::::::::::::::::::::::::::::::::::::::: objectives
 
-- "Display simple graphs with adequate titles and labels."
-- "Get familiar with functions `plot`, `heatmap` and `imagesc`."
-- "Learn how to show images side by side."
+objectives:
+- "Become familiar with key components of a neural network."
+- "Create the architecture for a convolutational neural network."
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::::: questions
 
-- "How can I visualize my data?"
+- "What is a neural network?"
+- "What are the characteristics of a dense layer?"
+- "What is an activation function?"
+- "What is a convolutional neural network?"
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
+
+:::::::::::::::::::::::::::::::::::::::: keypoints
+
+- "Dense layers, also known as fully connected layers, are an important building block in most neural network architectures. In a dense layer, each neuron is connected to every neuron in the preceeding layer."
+- "Dropout is a method that helps to prevent overfitting by temporarily removing neurons from the network."
+- "The Rectified Linear Unit (ReLU) is an activation function that outputs an input if it is positive, and outputs zero if it is not."
+- "Convolutional neural networks are typically used for imaging tasks."
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+
+
+## What is a neural network?
+
+An artificial neural network, or just “neural network”, is a broad term that describes a family of machine learning models that are (very!) loosely based on the neural circuits found in biology.
+
+The smallest building block of a neural network is a single neuron. A typical neuron receives inputs (x1, x2, x3) which are multiplied by learnable weights (w1, w2, w3), then summed with a bias term (b). An activation function (f) determines the neuron output.
+
+![](fig/neuron.png){alt="An example neuron receiving input from 3 other neurons"}
+
+From a high level, a neural network is a system that takes input values in an “input layer”, processes these values with a collection of functions in one or more “hidden layers”, and then generates an output such as a prediction. The network has parameters that are systematically tweaked to allow pattern recognition.
+
+![](fig/simple_neural_network.png){a;t="A simple neural network with input, output, and 2 hidden layers"}
+
+
+
+
+
+
+
+
+
+
+
+
+## MATLAB
+
 
 
 ## Plotting
@@ -204,13 +244,4 @@ subjects of the next two lessons.
 
 
 
-:::::::::::::::::::::::::::::::::::::::: keypoints
 
-- "Use `plot(vector)` to visualize data in the y axis with an index number in the x axis."
-- "Use `plot(X,Y)` to specify values in both axes."
-- "Document your plots with `title('My title')`, `xlabel('My horizontal label')` and `ylabel('My vertical label')`."
-- "Use `hold on` and `hold off` to plot multiple lines at the same time."
-- "Use `legend` and add `,'DisplayName','legend name here'` inside the plot function to add a legend."
-- "Use `subplot(m,n,p)` to create a grid of `m` x `n` plots, and choose a position `p` for a plot."
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
