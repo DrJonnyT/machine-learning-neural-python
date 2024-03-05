@@ -393,24 +393,24 @@ Common Thorax Diseases, IEEE CVPR, pp. 3462-3471, 2017</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The glob module finds all the pathnames matching a specified pattern</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> glob <span class="im">import</span> glob</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># If your dataset is compressed, unzip with:</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># !unzip chest_xrays.zip</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Define folders containing images</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>data_path <span class="op">=</span> os.path.join(<span class="st">"chest_xrays"</span>)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>effusion_path <span class="op">=</span> os.path.join(data_path, <span class="st">"effusion"</span>, <span class="st">"*.png"</span>)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>normal_path <span class="op">=</span> os.path.join(data_path, <span class="st">"normal"</span>, <span class="st">"*.png"</span>)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Create list of files</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>effusion_list <span class="op">=</span> glob(effusion_path)</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>normal_list <span class="op">=</span> glob(normal_path)</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Number of cases with pleural effusion: '</span>, <span class="bu">len</span>(effusion_list)) </span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Number of normal cases: '</span>, <span class="bu">len</span>(normal_list))</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co"># The glob module finds all the pathnames matching a specified pattern</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="im">from</span> glob <span class="im">import</span> glob</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="co"># If your dataset is compressed, unzip with:</span></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="co"># !unzip chest_xrays.zip</span></span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a><span class="co"># Define folders containing images</span></span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a>data_path <span class="op">=</span> os.path.join(<span class="st">"chest_xrays"</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a>effusion_path <span class="op">=</span> os.path.join(data_path, <span class="st">"effusion"</span>, <span class="st">"*.png"</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a>normal_path <span class="op">=</span> os.path.join(data_path, <span class="st">"normal"</span>, <span class="st">"*.png"</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a><span class="co"># Create list of files</span></span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a>effusion_list <span class="op">=</span> glob(effusion_path)</span>
+<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a>normal_list <span class="op">=</span> glob(normal_path)</span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Number of cases with pleural effusion: '</span>, <span class="bu">len</span>(effusion_list)) </span>
+<span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Number of normal cases: '</span>, <span class="bu">len</span>(normal_list))</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -452,7 +452,7 @@ assigning a value to it using <code>=</code>:</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">x</span> <span class="op">=</span> <span class="fl">55</span></span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">x</span> <span class="op">=</span> <span class="fl">55</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -474,8 +474,8 @@ example, we can do a simple sum:</p>
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">y</span> <span class="op">=</span> <span class="fl">10</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">x</span> <span class="op">+</span> <span class="va">y</span></span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">y</span> <span class="op">=</span> <span class="fl">10</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">x</span> <span class="op">+</span> <span class="va">y</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -492,7 +492,7 @@ we get:</p>
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">x</span> <span class="op">-</span> <span class="va">y</span></span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">x</span> <span class="op">-</span> <span class="va">y</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -505,7 +505,7 @@ the result of an operation to a new variable, for example:</p>
 <div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">z</span> <span class="op">=</span> <span class="va">x</span> <span class="op">*</span> <span class="va">y</span></span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">z</span> <span class="op">=</span> <span class="va">x</span> <span class="op">*</span> <span class="va">y</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -520,7 +520,7 @@ same variable. Fer example:</p>
 <div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">y</span> <span class="op">=</span> <span class="va">y</span><span class="op">/</span><span class="fl">5</span></span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">y</span> <span class="op">=</span> <span class="va">y</span><span class="op">/</span><span class="fl">5</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -537,7 +537,7 @@ example:</p>
 <div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">z</span> <span class="op">=</span> <span class="va">z</span> <span class="op">-</span> <span class="va">y</span><span class="op">^</span><span class="fl">3</span> <span class="op">+</span> <span class="fl">5</span><span class="op">*</span><span class="va">x</span></span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">z</span> <span class="op">=</span> <span class="va">z</span> <span class="op">-</span> <span class="va">y</span><span class="op">^</span><span class="fl">3</span> <span class="op">+</span> <span class="fl">5</span><span class="op">*</span><span class="va">x</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -555,10 +555,10 @@ which one is smaller, for example</p>
 <div class="codewrapper sourceCode" id="cb15">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">mass</span> <span class="op">=</span> <span class="fl">20</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">age</span> <span class="op">=</span> <span class="fl">2.5</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">frac</span> <span class="op">=</span> <span class="va">mass</span><span class="op">/</span><span class="va">age</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">c1</span> <span class="op">=</span> <span class="va">frac</span> <span class="op">&lt;</span> <span class="fl">10</span></span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">mass</span> <span class="op">=</span> <span class="fl">20</span></span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">age</span> <span class="op">=</span> <span class="fl">2.5</span></span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">frac</span> <span class="op">=</span> <span class="va">mass</span><span class="op">/</span><span class="va">age</span></span>
+<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">c1</span> <span class="op">=</span> <span class="va">frac</span> <span class="op">&lt;</span> <span class="fl">10</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -575,7 +575,7 @@ greater than 10, you would say “no”. Matlab answers with a
 <div class="codewrapper sourceCode" id="cb17">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">c2</span> <span class="op">=</span> <span class="va">frac</span> <span class="op">&gt;</span> <span class="fl">10</span></span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">c2</span> <span class="op">=</span> <span class="va">frac</span> <span class="op">&gt;</span> <span class="fl">10</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -593,13 +593,12 @@ logical comparison, and so matlab identifies it as such.</p>
 next to them, instead of the squares we had seen. There is actually
 other symbols we can get there, which relate to the types of information
 we can save (unfold the info below if you want to know more).</p>
-<div id="data-types" class="callout callout">
+<div id="callout1" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
-<div id="data-types" class="callout-inner">
-<h3 class="callout-title">Data types<a class="anchor" aria-label="anchor" href="#data-types"></a>
-</h3>
+<div class="section level3 callout-title callout-inner">
+<h3 class="callout-title" id="data-types">Data types<a class="anchor" aria-label="anchor" href="#data-types"></a></h3>
 <div class="callout-content">
 <div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
@@ -621,10 +620,10 @@ comparing things.</p>
 <div class="codewrapper sourceCode" id="cb19">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">weight</span> <span class="op">=</span> <span class="fl">64.5</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">size3</span> <span class="op">=</span> <span class="ss">'L'</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">patient_name</span> <span class="op">=</span> <span class="st">"Jane Doe"</span></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">alive_on_day_3</span> <span class="op">=</span> <span class="va">true</span></span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">weight</span> <span class="op">=</span> <span class="fl">64.5</span></span>
+<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">size3</span> <span class="op">=</span> <span class="ss">'L'</span></span>
+<span id="cb19-3"><a href="#cb19-3" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">patient_name</span> <span class="op">=</span> <span class="st">"Jane Doe"</span></span>
+<span id="cb19-4"><a href="#cb19-4" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">alive_on_day_3</span> <span class="op">=</span> <span class="va">true</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -656,7 +655,7 @@ same</p>
 <div class="codewrapper sourceCode" id="cb21">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">c3</span> <span class="op">=</span> <span class="va">frac</span> <span class="op">==</span> <span class="va">mass</span><span class="op">/</span><span class="va">age</span></span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">c3</span> <span class="op">=</span> <span class="va">frac</span> <span class="op">==</span> <span class="va">mass</span><span class="op">/</span><span class="va">age</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -682,7 +681,7 @@ age is greater than 5</p>
 <div class="codewrapper sourceCode" id="cb24">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">c5</span> <span class="op">=</span> <span class="va">frac</span> <span class="op">&lt;</span> <span class="fl">10</span> <span class="op">||</span> <span class="va">age</span> <span class="op">&gt;</span> <span class="fl">5</span></span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">c5</span> <span class="op">=</span> <span class="va">frac</span> <span class="op">&lt;</span> <span class="fl">10</span> <span class="op">||</span> <span class="va">age</span> <span class="op">&gt;</span> <span class="fl">5</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -755,7 +754,7 @@ value with a comma:</p>
 <div class="codewrapper sourceCode" id="cb26">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">A</span> <span class="op">=</span> [<span class="fl">1</span><span class="op">,</span> <span class="fl">2</span><span class="op">,</span> <span class="fl">3</span>]</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">A</span> <span class="op">=</span> [<span class="fl">1</span><span class="op">,</span> <span class="fl">2</span><span class="op">,</span> <span class="fl">3</span>]</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -771,7 +770,7 @@ value with a comma:</p>
 <div class="codewrapper sourceCode" id="cb28">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">B</span> <span class="op">=</span> [<span class="fl">1</span><span class="op">,</span> <span class="fl">2</span><span class="op">;</span> <span class="fl">3</span><span class="op">,</span> <span class="fl">4</span><span class="op">;</span> <span class="fl">5</span><span class="op">,</span> <span class="fl">6</span>]</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">B</span> <span class="op">=</span> [<span class="fl">1</span><span class="op">,</span> <span class="fl">2</span><span class="op">;</span> <span class="fl">3</span><span class="op">,</span> <span class="fl">4</span><span class="op">;</span> <span class="fl">5</span><span class="op">,</span> <span class="fl">6</span>]</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -788,7 +787,7 @@ could create an array of names:</p>
 <div class="codewrapper sourceCode" id="cb30">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">Names</span> <span class="op">=</span> [<span class="st">"Jhon"</span><span class="op">,</span> <span class="st">"Abigail"</span><span class="op">,</span> <span class="st">"Bertrand"</span><span class="op">,</span> <span class="st">"Lucile"</span>]</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">Names</span> <span class="op">=</span> [<span class="st">"Jhon"</span><span class="op">,</span> <span class="st">"Abigail"</span><span class="op">,</span> <span class="st">"Bertrand"</span><span class="op">,</span> <span class="st">"Lucile"</span>]</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -801,7 +800,7 @@ could create an array of names:</p>
 <div class="codewrapper sourceCode" id="cb32">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">C</span> <span class="op">=</span> [<span class="va">true</span><span class="op">;</span> <span class="va">false</span><span class="op">;</span> <span class="va">false</span><span class="op">;</span> <span class="va">true</span>]</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb32-1"><a href="#cb32-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">C</span> <span class="op">=</span> [<span class="va">true</span><span class="op">;</span> <span class="va">false</span><span class="op">;</span> <span class="va">false</span><span class="op">;</span> <span class="va">true</span>]</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -825,7 +824,7 @@ greater than, say, 3.</p>
 <div class="codewrapper sourceCode" id="cb34">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">B</span> <span class="op">&gt;</span> <span class="fl">3</span></span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb34-1"><a href="#cb34-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">B</span> <span class="op">&gt;</span> <span class="fl">3</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -846,13 +845,12 @@ course will focus on more basic programming concepts, and so we will use
 the feature rather little. However, it is very important that you keep
 it in mind, and that you do ask questions about it during the break if
 you are interested.</p>
-<div id="suppressing-the-output" class="callout callout">
+<div id="callout2" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
-<div id="suppressing-the-output" class="callout-inner">
-<h3 class="callout-title">Suppressing the output<a class="anchor" aria-label="anchor" href="#suppressing-the-output"></a>
-</h3>
+<div class="section level3 callout-title callout-inner">
+<h3 class="callout-title" id="suppressing-the-output">Suppressing the output<a class="anchor" aria-label="anchor" href="#suppressing-the-output"></a></h3>
 <div class="callout-content">
 <p>In general, the output can be a bit redundant (or even annoying!),
 and it can make the code slower, so it is considered good form to always
@@ -861,27 +859,26 @@ line:</p>
 <div class="codewrapper sourceCode" id="cb36">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">x</span> <span class="op">=</span> <span class="fl">33</span><span class="op">;</span></span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb36-1"><a href="#cb36-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">x</span> <span class="op">=</span> <span class="fl">33</span><span class="op">;</span></span></code></pre>
 </div>
 <p>At first glance nothing appears to have happened, but the workspace
 shows the new value was assigned.</p>
 </div>
 </div>
 </div>
-<div id="printing-a-variables-value" class="callout callout">
+<div id="callout3" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
-<div id="printing-a-variables-value" class="callout-inner">
-<h3 class="callout-title">Printing a variable’s value<a class="anchor" aria-label="anchor" href="#printing-a-variables-value"></a>
-</h3>
+<div class="section level3 callout-title callout-inner">
+<h3 class="callout-title" id="printing-a-variables-value">Printing a variable’s value<a class="anchor" aria-label="anchor" href="#printing-a-variables-value"></a></h3>
 <div class="callout-content">
 <p>If we really want to print the variable, then we can simply type its
 name and hit <kbd>Enter</kbd>,</p>
 <div class="codewrapper sourceCode" id="cb37">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">patient_name</span></span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb37-1"><a href="#cb37-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">patient_name</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -903,7 +900,7 @@ For the variable patient_name, we would use it like this:</p>
 <div class="codewrapper sourceCode" id="cb39">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">disp</span>(<span class="va">patient_name</span>)</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb39-1"><a href="#cb39-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">disp</span>(<span class="va">patient_name</span>)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -916,13 +913,12 @@ lines.</p>
 </div>
 </div>
 </div>
-<div id="keeping-things-tidy" class="callout callout">
+<div id="callout4" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
-<div id="keeping-things-tidy" class="callout-inner">
-<h3 class="callout-title">Keeping things tidy<a class="anchor" aria-label="anchor" href="#keeping-things-tidy"></a>
-</h3>
+<div class="section level3 callout-title callout-inner">
+<h3 class="callout-title" id="keeping-things-tidy">Keeping things tidy<a class="anchor" aria-label="anchor" href="#keeping-things-tidy"></a></h3>
 <div class="callout-content">
 <p>We have declared a few variables now, and we might not be using all
 of them. If we want to delete a variable we can do so by typing
@@ -930,7 +926,7 @@ of them. If we want to delete a variable we can do so by typing
 <div class="codewrapper sourceCode" id="cb41">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">clear</span> <span class="va">alive_on_day_3</span></span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb41-1"><a href="#cb41-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">clear</span> <span class="va">alive_on_day_3</span></span></code></pre>
 </div>
 <p>You might be able to see it disappear from the workspace. If you now
 try to use alive_on_day_3, matlab will error.</p>
@@ -942,7 +938,7 @@ output. To do that, we use the command <code>clc</code>.</p>
 <div class="codewrapper sourceCode" id="cb42">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">clc</span></span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb42-1"><a href="#cb42-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">clc</span></span></code></pre>
 </div>
 <p>Again, there is no way back!</p>
 </div>
@@ -1033,7 +1029,7 @@ clear the console.”</li>
   "identifier": "https://uomresearchit.github.io/machine-learning-neural-python/01-xrays.html",
   "dateCreated": "2023-09-11",
   "dateModified": "2023-09-07",
-  "datePublished": "2024-02-27"
+  "datePublished": "2024-03-05"
 }
 
   </script><script>

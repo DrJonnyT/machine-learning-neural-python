@@ -353,53 +353,54 @@ as “pleural effusion”. Let’s take a look at some of the images.</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># cv2 is openCV, a popular computer vision library</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cv2</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt </span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_example(example, label, loc):</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    image <span class="op">=</span> cv2.imread(example)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    im <span class="op">=</span> ax[loc].imshow(image)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    title <span class="op">=</span> <span class="ss">f"Class: </span><span class="sc">{</span>label<span class="sc">}</span><span class="ch">\n</span><span class="sc">{</span>example<span class="sc">}</span><span class="ss">"</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    ax[loc].set_title(title)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>fig.set_size_inches(<span class="dv">10</span>, <span class="dv">10</span>)</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot a "normal" record</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>plot_example(random.choice(normal_list), <span class="st">"Normal"</span>, <span class="dv">0</span>)</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot a record labelled with effusion</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>plot_example(random.choice(effusion_list), <span class="st">"Effusion"</span>, <span class="dv">1</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co"># cv2 is openCV, a popular computer vision library</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="im">import</span> cv2</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt </span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="im">import</span> random</span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="kw">def</span> plot_example(example, label, loc):</span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a>    image <span class="op">=</span> cv2.imread(example)</span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a>    im <span class="op">=</span> ax[loc].imshow(image)</span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a>    title <span class="op">=</span> <span class="ss">f"Class: </span><span class="sc">{</span>label<span class="sc">}</span><span class="ch">\n</span><span class="sc">{</span>example<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a>    ax[loc].set_title(title)</span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a>fig.set_size_inches(<span class="dv">10</span>, <span class="dv">10</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a><span class="co"># Plot a "normal" record</span></span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a>plot_example(random.choice(normal_list), <span class="st">"Normal"</span>, <span class="dv">0</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a><span class="co"># Plot a record labelled with effusion</span></span>
+<span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a>plot_example(random.choice(effusion_list), <span class="st">"Effusion"</span>, <span class="dv">1</span>)</span></code></pre>
 </div>
-<figure><img src="../fig/example_records.png" alt="Example X-rays" class="figure mx-auto d-block"><figcaption>Example X-rays</figcaption></figure></section><section id="can-we-detect-effusion"><h2 class="section-heading">Can we detect effusion?<a class="anchor" aria-label="anchor" href="#can-we-detect-effusion"></a>
+<figure><img src="../fig/example_records.png" alt="Example X-rays" class="figure mx-auto d-block"><div class="figcaption">Example X-rays</div>
+</figure></section><section id="can-we-detect-effusion"><h2 class="section-heading">Can we detect effusion?<a class="anchor" aria-label="anchor" href="#can-we-detect-effusion"></a>
 </h2>
 <hr class="half-width"><p>Run the following code to flip a coin to select an x-ray from our
 collection.</p>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Effusion or not?"</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># flip a coin</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>coin_flip <span class="op">=</span> random.choice([<span class="st">"Effusion"</span>, <span class="st">"Normal"</span>])</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> coin_flip <span class="op">==</span> <span class="st">"Normal"</span>:</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    fn <span class="op">=</span> random.choice(normal_list)</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    fn <span class="op">=</span> random.choice(effusion_list)</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the image</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>image <span class="op">=</span> cv2.imread(fn)</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>plt.imshow(image)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Effusion or not?"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="co"># flip a coin</span></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>coin_flip <span class="op">=</span> random.choice([<span class="st">"Effusion"</span>, <span class="st">"Normal"</span>])</span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="cf">if</span> coin_flip <span class="op">==</span> <span class="st">"Normal"</span>:</span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a>    fn <span class="op">=</span> random.choice(normal_list)</span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>    fn <span class="op">=</span> random.choice(effusion_list)</span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="co"># plot the image</span></span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a>image <span class="op">=</span> cv2.imread(fn)</span>
+<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a>plt.imshow(image)</span></code></pre>
 </div>
 <p>Show the answer:</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Jupyter doesn't allow us to print the image until the cell has run,</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># so we'll print in a new cell.</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"The answer is: </span><span class="sc">{</span>coin_flip<span class="sc">}</span><span class="ss">!"</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="co"># Jupyter doesn't allow us to print the image until the cell has run,</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="co"># so we'll print in a new cell.</span></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"The answer is: </span><span class="sc">{</span>coin_flip<span class="sc">}</span><span class="ss">!"</span>)</span></code></pre>
 </div>
 <div id="exercise-manual-classification" class="callout challenge">
 <div class="callout-square">
@@ -421,7 +422,7 @@ the solution below).</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1">Show me the solution</h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <ol style="list-style-type: upper-alpha"><li>Accuracy is the fraction of predictions that were correct (correct
 predictions / total predictions). &gt; If you made 10 predictions and 5
@@ -438,13 +439,13 @@ of our images:</p>
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np </span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>file_idx <span class="op">=</span> <span class="dv">56</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>example <span class="op">=</span> normal_list[file_idx]</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>image <span class="op">=</span> cv2.imread(example)</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(image.shape)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np </span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>file_idx <span class="op">=</span> <span class="dv">56</span></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>example <span class="op">=</span> normal_list[file_idx]</span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>image <span class="op">=</span> cv2.imread(example)</span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a><span class="bu">print</span>(image.shape)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -460,14 +461,15 @@ image (“RGB”, or Red, Green, Blue).</p>
 course on Image Processing with Python</a>. The following image is
 reproduced from the <a href="https://datacarpentry.org/image-processing/03-skimage-images/index.html" class="external-link">section
 on Image Representation</a>.</p>
-<figure><img src="../fig/chair-layers-rgb.png" alt="RGB image" class="figure mx-auto d-block"><figcaption>RGB image</figcaption></figure><p>For simplicity, we’ll instead load the images in greyscale. A
+<figure><img src="../fig/chair-layers-rgb.png" alt="RGB image" class="figure mx-auto d-block"><div class="figcaption">RGB image</div>
+</figure><p>For simplicity, we’ll instead load the images in greyscale. A
 greyscale image has two dimensions: height and width. Each value in the
 matrix represents a tone between black (0) and white (255).</p>
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>image <span class="op">=</span> cv2.imread(example, cv2.IMREAD_GRAYSCALE)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(image.shape)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>image <span class="op">=</span> cv2.imread(example, cv2.IMREAD_GRAYSCALE)</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="bu">print</span>(image.shape)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -479,16 +481,18 @@ same values are rendered as an image.</p>
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print a 10 by 10 chunk of the matrix</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(image[<span class="dv">35</span>:<span class="dv">45</span>, <span class="dv">30</span>:<span class="dv">40</span>])</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="co"># Print a 10 by 10 chunk of the matrix</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="bu">print</span>(image[<span class="dv">35</span>:<span class="dv">45</span>, <span class="dv">30</span>:<span class="dv">40</span>])</span></code></pre>
 </div>
-<figure><img src="../fig/greyscale_example_numpy.png" alt="Example greyscale numpy array" class="figure mx-auto d-block"><figcaption>Example greyscale numpy array</figcaption></figure><div class="codewrapper sourceCode" id="cb9">
+<figure><img src="../fig/greyscale_example_numpy.png" alt="Example greyscale numpy array" class="figure mx-auto d-block"><div class="figcaption">Example greyscale numpy array</div>
+</figure><div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the same chunk as an image</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>plt.imshow(image[<span class="dv">35</span>:<span class="dv">45</span>, <span class="dv">30</span>:<span class="dv">40</span>], cmap<span class="op">=</span><span class="st">'gray'</span>, vmin<span class="op">=</span><span class="dv">0</span>, vmax<span class="op">=</span><span class="dv">255</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="co"># Plot the same chunk as an image</span></span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>plt.imshow(image[<span class="dv">35</span>:<span class="dv">45</span>, <span class="dv">30</span>:<span class="dv">40</span>], cmap<span class="op">=</span><span class="st">'gray'</span>, vmin<span class="op">=</span><span class="dv">0</span>, vmax<span class="op">=</span><span class="dv">255</span>)</span></code></pre>
 </div>
-<figure><img src="../fig/greyscale_example.png" alt="Example greyscale image" class="figure mx-auto d-block"><figcaption>Example greyscale image</figcaption></figure></section><section id="image-pre-processing"><h2 class="section-heading">Image pre-processing<a class="anchor" aria-label="anchor" href="#image-pre-processing"></a>
+<figure><img src="../fig/greyscale_example.png" alt="Example greyscale image" class="figure mx-auto d-block"><div class="figcaption">Example greyscale image</div>
+</figure></section><section id="image-pre-processing"><h2 class="section-heading">Image pre-processing<a class="anchor" aria-label="anchor" href="#image-pre-processing"></a>
 </h2>
 <hr class="half-width"><p>In the next episode, we’ll be building and training a model. Let’s
 prepare our data for the modelling phase. For convenience, we’ll begin
@@ -497,33 +501,33 @@ to a list.</p>
 <div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a list of effusion images and labels</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>dataset_effusion <span class="op">=</span> [cv2.imread(fn, cv2.IMREAD_GRAYSCALE) <span class="cf">for</span> fn <span class="kw">in</span> effusion_list]</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>label_effusion <span class="op">=</span> np.ones(<span class="bu">len</span>(dataset_effusion))</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co"># create a list of normal images and labels</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>dataset_normal <span class="op">=</span> [cv2.imread(fn, cv2.IMREAD_GRAYSCALE) <span class="cf">for</span> fn <span class="kw">in</span> normal_list]</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>label_normal <span class="op">=</span> np.zeros(<span class="bu">len</span>(dataset_normal))</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine the lists</span></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>dataset <span class="op">=</span> dataset_effusion <span class="op">+</span> dataset_normal</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> np.concatenate([label_effusion, label_normal])</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="co"># create a list of effusion images and labels</span></span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>dataset_effusion <span class="op">=</span> [cv2.imread(fn, cv2.IMREAD_GRAYSCALE) <span class="cf">for</span> fn <span class="kw">in</span> effusion_list]</span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>label_effusion <span class="op">=</span> np.ones(<span class="bu">len</span>(dataset_effusion))</span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a><span class="co"># create a list of normal images and labels</span></span>
+<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a>dataset_normal <span class="op">=</span> [cv2.imread(fn, cv2.IMREAD_GRAYSCALE) <span class="cf">for</span> fn <span class="kw">in</span> normal_list]</span>
+<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a>label_normal <span class="op">=</span> np.zeros(<span class="bu">len</span>(dataset_normal))</span>
+<span id="cb10-8"><a href="#cb10-8" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" tabindex="-1"></a><span class="co"># Combine the lists</span></span>
+<span id="cb10-10"><a href="#cb10-10" tabindex="-1"></a>dataset <span class="op">=</span> dataset_effusion <span class="op">+</span> dataset_normal</span>
+<span id="cb10-11"><a href="#cb10-11" tabindex="-1"></a>labels <span class="op">=</span> np.concatenate([label_effusion, label_normal])</span></code></pre>
 </div>
 <p>Let’s also downsample the images, reducing the size from (512, 512)
 to (256,256).</p>
 <div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Downsample the images from (512,512) to (256,256)</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>dataset <span class="op">=</span> [cv2.resize(img, (<span class="dv">256</span>,<span class="dv">256</span>)) <span class="cf">for</span> img <span class="kw">in</span> dataset]</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Check the size of the reshaped images</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(dataset[<span class="dv">0</span>].shape)</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Normalize the data</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Subtract the mean, divide by the standard deviation.</span></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(dataset)):</span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  dataset[i] <span class="op">=</span> (dataset[i] <span class="op">-</span> np.average(dataset[i], axis<span class="op">=</span> (<span class="dv">0</span>, <span class="dv">1</span>))) <span class="op">/</span> np.std(dataset[i], axis<span class="op">=</span> (<span class="dv">0</span>, <span class="dv">1</span>)) </span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="co"># Downsample the images from (512,512) to (256,256)</span></span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>dataset <span class="op">=</span> [cv2.resize(img, (<span class="dv">256</span>,<span class="dv">256</span>)) <span class="cf">for</span> img <span class="kw">in</span> dataset]</span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a><span class="co"># Check the size of the reshaped images</span></span>
+<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a><span class="bu">print</span>(dataset[<span class="dv">0</span>].shape)</span>
+<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a><span class="co"># Normalize the data</span></span>
+<span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a><span class="co"># Subtract the mean, divide by the standard deviation.</span></span>
+<span id="cb11-9"><a href="#cb11-9" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(dataset)):</span>
+<span id="cb11-10"><a href="#cb11-10" tabindex="-1"></a>  dataset[i] <span class="op">=</span> (dataset[i] <span class="op">-</span> np.average(dataset[i], axis<span class="op">=</span> (<span class="dv">0</span>, <span class="dv">1</span>))) <span class="op">/</span> np.std(dataset[i], axis<span class="op">=</span> (<span class="dv">0</span>, <span class="dv">1</span>)) </span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -536,8 +540,8 @@ cases and 350 normal), each with a dimension of 256 by 256.</p>
 <div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>dataset <span class="op">=</span> np.asarray(dataset, dtype<span class="op">=</span>np.float32)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Matrix Dimensions: </span><span class="sc">{</span>dataset<span class="sc">.</span>shape<span class="sc">}</span><span class="ss">"</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a>dataset <span class="op">=</span> np.asarray(dataset, dtype<span class="op">=</span>np.float32)</span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Matrix Dimensions: </span><span class="sc">{</span>dataset<span class="sc">.</span>shape<span class="sc">}</span><span class="ss">"</span>)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -549,11 +553,12 @@ e.g., we can plot the first image in the dataset with:</p>
 <div class="codewrapper sourceCode" id="cb15">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>idx <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>vals <span class="op">=</span> dataset[idx].flatten()</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>plt.imshow(dataset[idx], cmap<span class="op">=</span><span class="st">'gray'</span>, vmin<span class="op">=</span><span class="bu">min</span>(vals), vmax<span class="op">=</span><span class="bu">max</span>(vals))</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a>idx <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a>vals <span class="op">=</span> dataset[idx].flatten()</span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a>plt.imshow(dataset[idx], cmap<span class="op">=</span><span class="st">'gray'</span>, vmin<span class="op">=</span><span class="bu">min</span>(vals), vmax<span class="op">=</span><span class="bu">max</span>(vals))</span></code></pre>
 </div>
-<figure><img src="../fig/final_example_image.png" alt="Final example image" class="figure mx-auto d-block"><figcaption>Final example image</figcaption></figure></section><section id="matlab"><h2 class="section-heading">MATLAB<a class="anchor" aria-label="anchor" href="#matlab"></a>
+<figure><img src="../fig/final_example_image.png" alt="Final example image" class="figure mx-auto d-block"><div class="figcaption">Final example image</div>
+</figure></section><section id="matlab"><h2 class="section-heading">MATLAB<a class="anchor" aria-label="anchor" href="#matlab"></a>
 </h2>
 <hr class="half-width"></section><section id="initializing-an-array"><h2 class="section-heading">Initializing an Array<a class="anchor" aria-label="anchor" href="#initializing-an-array"></a>
 </h2>
@@ -566,7 +571,7 @@ zeros. For example,</p>
 <div class="codewrapper sourceCode" id="cb16">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">Z</span> <span class="op">=</span> <span class="va">zeros</span>(<span class="fl">3</span><span class="op">,</span><span class="fl">5</span>)</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">Z</span> <span class="op">=</span> <span class="va">zeros</span>(<span class="fl">3</span><span class="op">,</span><span class="fl">5</span>)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -582,7 +587,7 @@ so</p>
 <div class="codewrapper sourceCode" id="cb18">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">Z</span> <span class="op">=</span> <span class="va">zeros</span>(<span class="fl">3</span>)</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">Z</span> <span class="op">=</span> <span class="va">zeros</span>(<span class="fl">3</span>)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -598,7 +603,7 @@ so</p>
 <div class="codewrapper sourceCode" id="cb20">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">Z</span> <span class="op">=</span> <span class="va">zeros</span>(<span class="fl">1</span><span class="va">x5</span>)</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">Z</span> <span class="op">=</span> <span class="va">zeros</span>(<span class="fl">1</span><span class="va">x5</span>)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -616,16 +621,15 @@ and 1.</p>
 <div class="codewrapper sourceCode" id="cb22">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">R</span> <span class="op">=</span> <span class="va">rand</span>(<span class="fl">8</span>)<span class="op">;</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">O</span> <span class="op">=</span> <span class="va">ones</span>(<span class="fl">10</span><span class="op">,</span><span class="fl">10</span>)<span class="op">;</span></span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">R</span> <span class="op">=</span> <span class="va">rand</span>(<span class="fl">8</span>)<span class="op">;</span></span>
+<span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">O</span> <span class="op">=</span> <span class="va">ones</span>(<span class="fl">10</span><span class="op">,</span><span class="fl">10</span>)<span class="op">;</span></span></code></pre>
 </div>
-<div id="callout1" class="callout callout">
+<div id="callout1" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
-<div class="callout-inner">
-<h3 class="callout-title">Callout<a class="anchor" aria-label="anchor" href="#callout1"></a>
-</h3>
+<div class="section level3 callout-title callout-inner">
+<h3 class="callout-title">Callout</h3>
 <div class="callout-content">
 <p><strong>Note:</strong> This is when supressing the output becomes
 more important. You can more comfortably explore the variables
@@ -640,7 +644,7 @@ constant and it will multiply each element. So for example,</p>
 <div class="codewrapper sourceCode" id="cb23">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">Fives</span> <span class="op">=</span> <span class="va">ones</span>(<span class="fl">3</span><span class="op">,</span><span class="fl">6</span>)<span class="op">*</span><span class="fl">5</span><span class="op">;</span></span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">Fives</span> <span class="op">=</span> <span class="va">ones</span>(<span class="fl">3</span><span class="op">,</span><span class="fl">6</span>)<span class="op">*</span><span class="fl">5</span><span class="op">;</span></span></code></pre>
 </div>
 <p>Produces a 3x6 matrix full of fives.</p>
 <p>The <a href="https://uk.mathworks.com/help/matlab/ref/magic.html" class="external-link"><code>magic</code>
@@ -650,7 +654,7 @@ elements on each row or column add up to the same number.</p>
 <div class="codewrapper sourceCode" id="cb24">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">M</span> <span class="op">=</span> <span class="va">magic</span>(<span class="fl">4</span>)</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">M</span> <span class="op">=</span> <span class="va">magic</span>(<span class="fl">4</span>)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -674,7 +678,7 @@ selecting one element.</p>
 <div class="codewrapper sourceCode" id="cb26">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">M</span> <span class="op">=</span> <span class="va">magic</span>(<span class="fl">8</span>)</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">M</span> <span class="op">=</span> <span class="va">magic</span>(<span class="fl">8</span>)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -698,7 +702,7 @@ goes after the name of our array. In our case, this is:</p>
 <div class="codewrapper sourceCode" id="cb28">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">M</span>(<span class="fl">5</span><span class="op">,</span> <span class="fl">6</span>)</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">M</span>(<span class="fl">5</span><span class="op">,</span> <span class="fl">6</span>)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -707,13 +711,12 @@ goes after the name of our array. In our case, this is:</p>
 </div>
 <p>So the index <code>(5, 6)</code> selects the element on the fifth row
 and sixth column of <code>M</code>.</p>
-<div id="callout2" class="callout callout">
+<div id="callout2" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
-<div class="callout-inner">
-<h3 class="callout-title">Callout<a class="anchor" aria-label="anchor" href="#callout2"></a>
-</h3>
+<div class="section level3 callout-title callout-inner">
+<h3 class="callout-title">Callout</h3>
 <div class="callout-content">
 <p><strong>Note:</strong> Matlab starts counting indices at 1, not 0!
 (as many other programming languages).</p>
@@ -728,7 +731,7 @@ arrays as indices. For example, if we want to select this submatrix:</p>
 <div class="codewrapper sourceCode" id="cb30">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">M</span>([<span class="fl">4</span><span class="op">,</span><span class="fl">5</span><span class="op">,</span><span class="fl">6</span>]<span class="op">,</span>[<span class="fl">5</span><span class="op">,</span><span class="fl">6</span><span class="op">,</span><span class="fl">7</span>])</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">M</span>([<span class="fl">4</span><span class="op">,</span><span class="fl">5</span><span class="op">,</span><span class="fl">6</span>]<span class="op">,</span>[<span class="fl">5</span><span class="op">,</span><span class="fl">6</span><span class="op">,</span><span class="fl">7</span>])</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -738,13 +741,12 @@ arrays as indices. For example, if we want to select this submatrix:</p>
    28   38   39
    45   19   18</code></pre>
 </div>
-<div id="the-operator" class="callout callout">
+<div id="callout3" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
-<div id="the-operator" class="callout-inner">
-<h3 class="callout-title">The<code>:</code>operator<a class="anchor" aria-label="anchor" href="#the-operator"></a>
-</h3>
+<div class="section level3 callout-title callout-inner">
+<h3 class="callout-title" id="the-operator">The <code>:</code> operator<a class="anchor" aria-label="anchor" href="#the-operator"></a></h3>
 <div class="callout-content">
 <p>In matlab, the symbol <code>:</code> (<a href="https://uk.mathworks.com/help/matlab/ref/colon.html" class="external-link"><code>colon</code></a>)
 is used to specify a range. The range is specified as
@@ -753,7 +755,7 @@ generates an array of consecutive numbers from 1 to 6:</p>
 <div class="codewrapper sourceCode" id="cb32">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="fl">1</span><span class="op">:</span><span class="fl">6</span></span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb32-1"><a href="#cb32-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="fl">1</span><span class="op">:</span><span class="fl">6</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -769,7 +771,7 @@ starting with 1, then 1+3, then 1+2*3, and so on, until it reaches 15
 <div class="codewrapper sourceCode" id="cb34">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">:</span><span class="fl">15</span></span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb34-1"><a href="#cb34-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">:</span><span class="fl">15</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -790,7 +792,7 @@ need the square brackets anymore. So the command above becomes:</p>
 <div class="codewrapper sourceCode" id="cb36">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">M</span>(<span class="fl">4</span><span class="op">:</span><span class="fl">6</span><span class="op">,</span> <span class="fl">5</span><span class="op">:</span><span class="fl">7</span>)</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb36-1"><a href="#cb36-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">M</span>(<span class="fl">4</span><span class="op">:</span><span class="fl">6</span><span class="op">,</span> <span class="fl">5</span><span class="op">:</span><span class="fl">7</span>)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -817,14 +819,14 @@ need the square brackets anymore. So the command above becomes:</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2">Show me the solution</h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>We need to select every other element in both dimensions. To do that,
 we define the apropriate intervals with an increment of 2:</p>
 <div class="codewrapper sourceCode" id="cb38">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">M</span>(<span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">:</span><span class="fl">8</span><span class="op">,</span> <span class="fl">2</span><span class="op">:</span><span class="fl">2</span><span class="op">:</span><span class="fl">8</span>)</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb38-1"><a href="#cb38-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">M</span>(<span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">:</span><span class="fl">8</span><span class="op">,</span> <span class="fl">2</span><span class="op">:</span><span class="fl">2</span><span class="op">:</span><span class="fl">8</span>)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -846,7 +848,7 @@ range <code>1:8</code>.</p>
 <div class="codewrapper sourceCode" id="cb40">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">M</span>(<span class="fl">5</span><span class="op">,</span> <span class="fl">1</span><span class="op">:</span><span class="fl">8</span>)</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb40-1"><a href="#cb40-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">M</span>(<span class="fl">5</span><span class="op">,</span> <span class="fl">1</span><span class="op">:</span><span class="fl">8</span>)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -856,13 +858,13 @@ range <code>1:8</code>.</p>
 </div>
 <p>However, we need to know that there are 8 columns, which is not very
 robust.</p>
-<div id="the-key-word-end" class="callout callout">
+<div id="callout4" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
-<div id="the-key-word-end" class="callout-inner">
-<h3 class="callout-title">The key-word<code>end</code><a class="anchor" aria-label="anchor" href="#the-key-word-end"></a>
-</h3>
+<div class="section level3 callout-title callout-inner">
+<h3 class="callout-title" id="the-key-word-end">The key-word <code>end</code>
+<a class="anchor" aria-label="anchor" href="#the-key-word-end"></a></h3>
 <div class="callout-content">
 <p>When indexing the elements of an array, the key word <code>end</code>
 can be used to get the last index available.</p>
@@ -871,7 +873,7 @@ second row:</p>
 <div class="codewrapper sourceCode" id="cb42">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">M</span>(<span class="fl">2</span><span class="op">,</span><span class="kw">end</span>)</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb42-1"><a href="#cb42-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">M</span>(<span class="fl">2</span><span class="op">,</span><span class="kw">end</span>)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -885,7 +887,7 @@ from row 5 until the end:</p>
 <div class="codewrapper sourceCode" id="cb44">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">M</span>(<span class="fl">5</span><span class="op">:</span><span class="kw">end</span><span class="op">,</span><span class="fl">3</span>)</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb44-1"><a href="#cb44-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">M</span>(<span class="fl">5</span><span class="op">:</span><span class="kw">end</span><span class="op">,</span><span class="fl">3</span>)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -904,7 +906,7 @@ the whole row with <code>1:end</code>.</p>
 <div class="codewrapper sourceCode" id="cb46">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">M</span>(<span class="fl">5</span><span class="op">,</span> <span class="fl">1</span><span class="op">:</span><span class="kw">end</span>)</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb46-1"><a href="#cb46-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">M</span>(<span class="fl">5</span><span class="op">,</span> <span class="fl">1</span><span class="op">:</span><span class="kw">end</span>)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -914,13 +916,12 @@ the whole row with <code>1:end</code>.</p>
 </div>
 <p>This is much better, now this works for any size of matrix, and we
 don’t need to know the size.</p>
-<div id="using-as-an-index" class="callout callout">
+<div id="callout5" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
-<div id="using-as-an-index" class="callout-inner">
-<h3 class="callout-title">Using<code>:</code>as an index<a class="anchor" aria-label="anchor" href="#using-as-an-index"></a>
-</h3>
+<div class="section level3 callout-title callout-inner">
+<h3 class="callout-title" id="using-as-an-index">Using <code>:</code> as an index<a class="anchor" aria-label="anchor" href="#using-as-an-index"></a></h3>
 <div class="callout-content">
 <p>getting a whole row or column is such a common operation, that matlab
 has a shortcut: Using <code>:</code> alone is equivalent!</p>
@@ -928,7 +929,7 @@ has a shortcut: Using <code>:</code> alone is equivalent!</p>
 <div class="codewrapper sourceCode" id="cb48">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">M</span>(<span class="fl">5</span><span class="op">,</span> <span class="op">:</span>)</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb48-1"><a href="#cb48-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">M</span>(<span class="fl">5</span><span class="op">,</span> <span class="op">:</span>)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -945,7 +946,7 @@ accessing arrays!</p>
 <figure><img src="../fig/matrix-multi-rows.svg" alt="Accessing multiple rows" class="figure mx-auto d-block"></figure><div class="codewrapper sourceCode" id="cb50">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">M</span>(<span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">,</span> <span class="op">:</span>)</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb50-1"><a href="#cb50-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">M</span>(<span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">,</span> <span class="op">:</span>)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -960,7 +961,7 @@ accessing arrays!</p>
 <figure><img src="../fig/matrix-multi-cols.svg" alt="Accessing multiple columns" class="figure mx-auto d-block"></figure><div class="codewrapper sourceCode" id="cb52">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">M</span>(<span class="op">:,</span> <span class="fl">6</span><span class="op">:</span><span class="kw">end</span>)</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb52-1"><a href="#cb52-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">M</span>(<span class="op">:,</span> <span class="fl">6</span><span class="op">:</span><span class="kw">end</span>)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -993,14 +994,14 @@ numbers 5 or 8, and using <code>end</code> only once:</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3">Show me the solution</h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>We need to tart with row <code>2</code>, and subsequently select
 every third row:</p>
 <div class="codewrapper sourceCode" id="cb54">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">M</span>(<span class="fl">2</span><span class="op">:</span><span class="fl">3</span><span class="op">:</span><span class="kw">end</span><span class="op">,</span> <span class="op">:</span>)</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb54-1"><a href="#cb54-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">M</span>(<span class="fl">2</span><span class="op">:</span><span class="fl">3</span><span class="op">:</span><span class="kw">end</span><span class="op">,</span> <span class="op">:</span>)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1027,9 +1028,9 @@ can take slices of character arrays as well:</p>
 <div class="codewrapper sourceCode" id="cb56">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">element</span> <span class="op">=</span> <span class="ss">'oxygen'</span><span class="op">;</span></span>
-<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">disp</span>([<span class="ss">'first three characters: '</span><span class="op">,</span> <span class="va">element</span>(<span class="fl">1</span><span class="op">:</span><span class="fl">3</span>)])</span>
-<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">disp</span>([<span class="ss">'last three characters: '</span><span class="op">,</span> <span class="va">element</span>(<span class="fl">4</span><span class="op">:</span><span class="fl">6</span>)])</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb56-1"><a href="#cb56-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">element</span> <span class="op">=</span> <span class="ss">'oxygen'</span><span class="op">;</span></span>
+<span id="cb56-2"><a href="#cb56-2" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">disp</span>([<span class="ss">'first three characters: '</span><span class="op">,</span> <span class="va">element</span>(<span class="fl">1</span><span class="op">:</span><span class="fl">3</span>)])</span>
+<span id="cb56-3"><a href="#cb56-3" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">disp</span>([<span class="ss">'last three characters: '</span><span class="op">,</span> <span class="va">element</span>(<span class="fl">4</span><span class="op">:</span><span class="fl">6</span>)])</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1056,7 +1057,7 @@ the element variable? Compare the result from <code>element</code> and
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4">Show me the solution</h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <ol style="list-style-type: decimal"><li>Exercises using slicing</li>
 </ol><ul><li><p>To select all elements from 3rd to last we can use start our
@@ -1081,7 +1082,7 @@ which returns the dimensions of the array given as an input:</p>
 <div class="codewrapper sourceCode" id="cb58">
 <h3 class="code-label">MATLAB<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">size</span>(<span class="va">M</span>(<span class="op">:</span>))</span></code></pre>
+<pre class="sourceCode matlab" tabindex="0"><code class="sourceCode matlab"><span id="cb58-1"><a href="#cb58-1" tabindex="-1"></a><span class="op">&gt;&gt;</span> <span class="va">size</span>(<span class="va">M</span>(<span class="op">:</span>))</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1186,7 +1187,7 @@ elements.”</li>
   "identifier": "https://uomresearchit.github.io/machine-learning-neural-python/instructor/02-visualisation.html",
   "dateCreated": "2023-09-11",
   "dateModified": "2023-09-11",
-  "datePublished": "2024-02-27"
+  "datePublished": "2024-03-05"
 }
 
   </script><script>
