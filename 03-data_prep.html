@@ -27,7 +27,7 @@
             <span class="visually-hidden">This lesson is in the pre-alpha phase, which means that it is in early development, but has not yet been taught.</span>
           </abbr>
         </span>
-        
+
       </div>
     </div>
     <div class="selector-container">
@@ -56,7 +56,7 @@
             </li>
           </ul></li>
       </div>
-      
+
       <div class="dropdown" id="instructor-dropdown">
         <button class="btn btn-secondary dropdown-toggle bordered-button" type="button" id="dropdownMenu1" data-bs-toggle="dropdown" aria-expanded="false">
           <i aria-hidden="true" class="icon" data-feather="eye"></i> Learner View <i data-feather="chevron-down"></i>
@@ -180,7 +180,7 @@
                 </div><!--/div.accordion-flush-->
               </div><!--div.sidenav-view-selector -->
             </div><!--/div.col -->
-      
+
             <hr></div><!--/div.mobile-row -->
 
           <div class="accordion accordion-flush" id="accordionFlush11">
@@ -199,7 +199,7 @@
     <div class="accordion-header" id="flush-heading1">
         <a href="index.html">Summary and Setup</a>
     </div><!--/div.accordion-header-->
-        
+
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
 
@@ -208,7 +208,7 @@
     <div class="accordion-header" id="flush-heading2">
         <a href="01-xrays.html">1. Introduction</a>
     </div><!--/div.accordion-header-->
-        
+
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
 
@@ -217,7 +217,7 @@
     <div class="accordion-header" id="flush-heading3">
         <a href="02-visualisation.html">2. Visualisation</a>
     </div><!--/div.accordion-header-->
-        
+
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
 
@@ -231,7 +231,7 @@
         </span>
       </button>
     </div><!--/div.accordion-header-->
-        
+
     <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
         <ul><li><a href="#partitioning-into-training-and-test-sets">Partitioning into training and test sets</a></li>
@@ -241,7 +241,7 @@
 <li><a href="#initial-exploration">Initial exploration</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
-        
+
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
 
@@ -250,7 +250,7 @@
     <div class="accordion-header" id="flush-heading5">
         <a href="04-create_net.html">4. Neural networks</a>
     </div><!--/div.accordion-header-->
-        
+
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
 
@@ -259,7 +259,7 @@
     <div class="accordion-header" id="flush-heading6">
         <a href="05-scripts.html">5. Writing MATLAB Scripts</a>
     </div><!--/div.accordion-header-->
-        
+
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
 
@@ -268,7 +268,7 @@
     <div class="accordion-header" id="flush-heading7">
         <a href="06-func.html">6. Creating Functions</a>
     </div><!--/div.accordion-header-->
-        
+
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
 
@@ -277,7 +277,7 @@
     <div class="accordion-header" id="flush-heading8">
         <a href="07-loops.html">7. Repeating With Loops</a>
     </div><!--/div.accordion-header-->
-        
+
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
 
@@ -286,7 +286,7 @@
     <div class="accordion-header" id="flush-heading9">
         <a href="08-cond.html">8. Making Choices</a>
     </div><!--/div.accordion-header-->
-        
+
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
 
@@ -318,10 +318,10 @@
               </div>
             </div>
             <hr class="half-width resources"><a href="aio.html">See all in one page</a>
-            
+
 
             <hr class="d-none d-sm-block d-md-none"><div class="d-grid gap-1">
-            
+
             </div>
           </div><!-- /div.accordion -->
         </div><!-- /div.sidebar-inner -->
@@ -342,18 +342,18 @@
           Previous: Visualisation
         </a>
         <a class="chapter-link float-end" href="04-create_net.html" rel="next">
-          Next: Neural networks... 
+          Next: Neural networks...
           <i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i>
         </a>
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Data preparation</h1>
         <p>Last updated on 2023-09-11 |
-        
+
         <a href="https://github.com/UoMResearchIT/machine-learning-neural-python/edit/main/episodes/03-data_prep.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
-        
-        
-        
+
+
+
         <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
         </div>
@@ -383,8 +383,8 @@
 </div>
 </div>
 </div>
-<section id="partitioning-into-training-and-test-sets"><h2 class="section-heading">Partitioning into training and test sets<a class="anchor" aria-label="anchor" href="#partitioning-into-training-and-test-sets"></a>
-</h2>
+<section><h2 class="section-heading" id="partitioning-into-training-and-test-sets">Partitioning into training and test sets<a class="anchor" aria-label="anchor" href="#partitioning-into-training-and-test-sets"></a>
+<a class="anchor" aria-label="anchor" href="#partitioning-into-training-and-test-sets"></a></h2>
 <hr class="half-width"><p>As we have done in previous projects, we will want to split our data
 into subsets for training and testing. The training set is used for
 building our model and our test set is used for evaluation.</p>
@@ -423,8 +423,8 @@ Train: (505, 256, 256, 1), (505, 1)
 Validation: (90, 256, 256, 1), (90, 1)
 Test: (105, 256, 256, 1), (105, 1)</code></pre>
 </div>
-</section><section id="data-augmentation"><h2 class="section-heading">Data Augmentation<a class="anchor" aria-label="anchor" href="#data-augmentation"></a>
-</h2>
+</section><section><h2 class="section-heading" id="data-augmentation">Data Augmentation<a class="anchor" aria-label="anchor" href="#data-augmentation"></a>
+<a class="anchor" aria-label="anchor" href="#data-augmentation"></a></h2>
 <hr class="half-width"><p>We have a small dataset, which increases the chance of overfitting
 our model. If our model is overfitted, it becomes less able to
 generalize to data outside the training data.</p>
@@ -477,10 +477,10 @@ sees something unusual in real-life, it will be better adapted to deal
 with it.</p>
 <p>Now we have some data to work with, let’s start building our
 model.</p>
-</section><section id="matlab"><h2 class="section-heading">MATLAB<a class="anchor" aria-label="anchor" href="#matlab"></a>
-</h2>
-<hr class="half-width"></section><section id="loading-data-to-an-array"><h2 class="section-heading">Loading data to an array<a class="anchor" aria-label="anchor" href="#loading-data-to-an-array"></a>
-</h2>
+</section><section><h2 class="section-heading" id="matlab">MATLAB<a class="anchor" aria-label="anchor" href="#matlab"></a>
+<a class="anchor" aria-label="anchor" href="#matlab"></a></h2>
+<hr class="half-width"></section><section><h2 class="section-heading" id="loading-data-to-an-array">Loading data to an array<a class="anchor" aria-label="anchor" href="#loading-data-to-an-array"></a>
+<a class="anchor" aria-label="anchor" href="#loading-data-to-an-array"></a></h2>
 <hr class="half-width"><p>Reading data from files and writing data to them are essential tasks
 in scientific computing, and something that we’d rather not spend a lot
 of time thinking about. Fortunately, MATLAB comes with a number of
@@ -587,8 +587,8 @@ an array:</p>
 </div>
 <p>Again, this just means that you can store very small or very large
 numbers, called double precision floating-point numbers.</p>
-</section><section id="initial-exploration"><h2 class="section-heading">Initial exploration<a class="anchor" aria-label="anchor" href="#initial-exploration"></a>
-</h2>
+</section><section><h2 class="section-heading" id="initial-exploration">Initial exploration<a class="anchor" aria-label="anchor" href="#initial-exploration"></a>
+<a class="anchor" aria-label="anchor" href="#initial-exploration"></a></h2>
 <hr class="half-width"><p>We know that in our data each row represents a patient and each
 column a different day.</p>
 <div class="section level4">
@@ -660,7 +660,7 @@ the <code>max</code>, <code>min</code> and <code>std</code>?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>We already know that the colon operator as an index returns all the
 elements, so <code>patient_data(:)</code> will return a vector with all
@@ -886,41 +886,41 @@ the documentation browser or using the <code>help</code> command</p>
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="output" tabindex="0"><code>mean   Average or mean value.
-    S = mean(X) is the mean value of the elements in X if X is a vector. 
-    For matrices, S is a row vector containing the mean value of each 
-    column. 
-    For N-D arrays, S is the mean value of the elements along the first 
+    S = mean(X) is the mean value of the elements in X if X is a vector.
+    For matrices, S is a row vector containing the mean value of each
+    column.
+    For N-D arrays, S is the mean value of the elements along the first
     array dimension whose size does not equal 1.
- 
+
     mean(X,DIM) takes the mean along the dimension DIM of X.
- 
-    S = mean(...,TYPE) specifies the type in which the mean is performed, 
+
+    S = mean(...,TYPE) specifies the type in which the mean is performed,
     and the type of S. Available options are:
- 
+
     'double'    -  S has class double for any input X
     'native'    -  S has the same class as X
     'default'   -  If X is floating point, that is double or single,
-                   S has the same class as X. If X is not floating point, 
+                   S has the same class as X. If X is not floating point,
                    S has class double.
- 
-    S = mean(...,NANFLAG) specifies how NaN (Not-A-Number) values are 
+
+    S = mean(...,NANFLAG) specifies how NaN (Not-A-Number) values are
     treated. The default is 'includenan':
- 
+
     'includenan' - the mean of a vector containing NaN values is also NaN.
-    'omitnan'    - the mean of a vector containing NaN values is the mean 
+    'omitnan'    - the mean of a vector containing NaN values is the mean
                    of all its non-NaN elements. If all elements are NaN,
                    the result is NaN.
- 
+
     Example:
         X = [1 2 3; 3 3 6; 4 6 8; 4 7 7]
         mean(X,1)
         mean(X,2)
- 
+
     Class support for input X:
        float: double, single
        integer: uint8, int8, uint16, int16, uint32,
                 int32, uint64, int64
- 
+
     See also median, std, min, max, var, cov, mode.</code></pre>
 </div>
 <p>The first paragraph explains why it worked for a single day or
@@ -968,7 +968,7 @@ that the commands become:</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>Using the power matlab has to compare arrays, we can check which
 patients have a <code>max</code> equal to the <code>global_max</code>.
@@ -1015,7 +1015,7 @@ learn to make some plots.</p>
           Previous: Visualisation
         </a>
         <a class="chapter-link float-end" href="04-create_net.html" rel="next">
-          Next: Neural networks... 
+          Next: Neural networks...
           <i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i>
         </a>
       </div>
@@ -1026,18 +1026,18 @@ learn to make some plots.</p>
       		<footer class="row footer mx-md-3"><hr><div class="col-md-6">
         <p>This lesson is subject to the <a href="CODE_OF_CONDUCT.html">Code of Conduct</a></p>
         <p>
-        
+
         <a href="https://github.com/UoMResearchIT/machine-learning-neural-python/edit/main/episodes/03-data_prep.md" class="external-link">Edit on GitHub</a>
-        
+
 	
         | <a href="https://github.com/UoMResearchIT/machine-learning-neural-python/blob/main/CONTRIBUTING.md" class="external-link">Contributing</a>
         | <a href="https://github.com/UoMResearchIT/machine-learning-neural-python/" class="external-link">Source</a></p>
 				<p><a href="https://github.com/UoMResearchIT/machine-learning-neural-python/blob/main/CITATION" class="external-link">Cite</a> | <a href="mailto:team@carpentries.org">Contact</a> | <a href="https://carpentries.org/about/" class="external-link">About</a></p>
 			</div>
 			<div class="col-md-6">
-        
+
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
-        
+
         <p>Template licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">CC-BY 4.0</a> by <a href="https://carpentries.org/" class="external-link">The Carpentries</a></p>
         <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.16.5" class="external-link">sandpaper (0.16.5)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.6" class="external-link">pegboard (0.7.6)</a>, and <a href="https://github.com/carpentries/varnish/tree/1.0.3" class="external-link">varnish (1.0.3)</a></p>
 			</div>
@@ -1062,7 +1062,7 @@ learn to make some plots.</p>
   "identifier": "https://uomresearchit.github.io/machine-learning-neural-python/03-data_prep.html",
   "dateCreated": "2023-09-11",
   "dateModified": "2023-09-11",
-  "datePublished": "2024-07-02"
+  "datePublished": "2024-07-09"
 }
 
   </script><script>
